@@ -7,7 +7,7 @@ This browser based web application to ...
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * Hi my name is Kade, Github scares me, but it seems useful
-* My name is Conrad. I am finally ready to git going
+* My name is Conrad. I am finally ready to git going.
 * My name is Emily and I am in CST. 
 	
 ## 3. Technologies and Resources Used
