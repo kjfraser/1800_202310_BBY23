@@ -1,1 +1,24 @@
+.bg-info {
+    background-color: #DEBA6F !important;
+}
 
+.navbar-light .navbar-brand {
+    color: #823038;
+}
+
+.btn-primary {
+    color: #823038;                           
+    font-size: 150%;
+    background-color: #DEBA6F;                
+    border-color: #823038;                    
+    border-width: thick
+}
+
+body {
+    background-color: #F4F7BE;
+}
+
+.navbar-brand{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.25rem;
+}
