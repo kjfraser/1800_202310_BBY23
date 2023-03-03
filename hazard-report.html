@@ -40,15 +40,27 @@
 </head>
 
 <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-
     <!-- our own navbar goes here -->
     <nav class="navbar navbar-light bg-light">
         <p>Create a Report</p>
     </nav>
+    
+    <!-- place holder content, does not interact with database -->
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="" class="form-control" id="exampleFormControlInput1" placeholder="Hazard">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
 
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Add Photos</label>
+        <input class="form-control" type="file" id="formFile">
+      </div>
+
+      
     <!-- our own footer goes here-->
     <footer class="navbar bg-info fixed-bottom">
         <div class="container">
