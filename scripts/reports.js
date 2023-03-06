@@ -1,16 +1,31 @@
 
+
+//Works like a charm
 function createHazardReport(){
-  let params = new URL(Window.location.href);
-  let ID = params.searchParams.get("docID");
-
-  db.collection("reports").doc(ID).add({
-
-    title: "default",
-    location: GeoPoint(0.1, 0.1)
-  })
-}
+  var reports = db.collection("hazards");
+  
+    reports.add({
+      title: "default",
+      location: 0.1
+    })
+  }
 
 
+document.getElementById("reports-list").innerText = "Empty";
+
+// function loadReportsList(){
+//   firebase.auth().onAuthStateChanged(user => {
+//     if (user){
+//       var reports = db.collection("users").doc(user.uid).collection("reports");
+//       reports.get().then((reps) => {
+//         console.log(reps);
+//         reps.forEach(element => {
+//           console.log("hi");
+//         });
+//       })
+//     }
+//   })
+// }
 
 
 // var uiConfig = {
