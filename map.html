@@ -31,6 +31,11 @@
     <!-- Link to styles of your own -->
  <link rel="stylesheet" href="./styles/style.css"> 
 
+
+ <!-- link Map API-->
+ <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+
 </head>
 
 <body>
@@ -59,17 +64,30 @@
             </div>
         </div>
     </nav>
-  
-   <!--Welcome Page-->
-   <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Welcome to Hazard Mapping</h1>
-    <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4"> An app where users can report and locate hazards in their community.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a type="button" href="login.html" class="btn btn-info btn-lg px-4 gap-3 custom-btn" role="button">Login/Signup</a>
+
+
+
+    <!--Map-->
+
+    <!-- Main Body -->
+    <main>
+        <!-- MAPBOX -->
+        <h2>Map View Holder</h2>
+        <div id='map' style='width: 100%; height: 400px;'></div>
+        <!-- MAPBOX -->
+        <div>
+            <div class="card">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Need Suggestion?</h5>
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione eos, molestias
+                    dolore deleniti repellendus quam eligendi consequatur asperiores in nostrum ex error. Voluptatibus,
+                    odio reiciendis, aliquam accusantium distinctio perferendis dolorum voluptatum odit delectus iste
+                    quisquam impedit inventore eos unde perspiciatis nam earum ad rem, nesciunt quam? Laudantium
+                    voluptates repellat unde.</p>
+            </div>
         </div>
-    </div>
-</div>
+    </main>
 
       
 
@@ -94,7 +112,7 @@
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
     <script src="./scripts/firebaseAPI_TEAM23.js"></script>
-
+    <script src="./scripts/map.js"></script>
 </body>
 
 </html>

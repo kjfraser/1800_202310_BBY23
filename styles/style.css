@@ -1,10 +1,22 @@
-.bg-info {
-    background-color: #DEBA6F !important;
+.navbar.navbar-expand-lg.navbar-light.bg-custom {
+    background-color: #132A13 !important;
 }
 
 .navbar-light .navbar-brand {
-    color: #823038;
+    color:  white;
 }
+
+.custom-btn {
+    background-color: #31572c;
+    border-color: #31572c;
+    color: #fff;
+  }
+  
+
+
+.custom-bg {
+    background-color: #31572c;
+  }
 
 .btn-primary {
     color: #823038;                           
@@ -15,7 +27,7 @@
 }
 
 body {
-    background-color: #F4F7BE;
+    background-color: white;
 }
 
 .navbar-brand{
