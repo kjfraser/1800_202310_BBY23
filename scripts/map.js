@@ -106,4 +106,4 @@ function showEventsOnMap() {
     })
 }
 
-showHikesOnMap()
+showEventsOnMap()
