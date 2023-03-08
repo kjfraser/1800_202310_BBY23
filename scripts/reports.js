@@ -1,3 +1,4 @@
+
 //Works like a charm
 function createHazardReport() {
   firebase.auth().onAuthStateChanged((user) => {
@@ -6,8 +7,8 @@ function createHazardReport() {
         .add({
           title: "default",
           description: "default",
-          lng: -120,
-          lat: 50,
+          lng: userLng,
+          lat: userLat,
           datetime: firebase.firestore.FieldValue.serverTimestamp(),
           owner: user.uid,
         })
@@ -26,7 +27,7 @@ function createHTMLReport(title) {
   document.getElementById("reports-list").innerHTML += title;
 }
 
-function loadReportsList() {
+function loadCurrentUserReports() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       db.collection("users")
@@ -41,7 +42,7 @@ function loadReportsList() {
               .then((report) => {
                 if (report && report.data()) {
                   let title = report.data().title;
-                  createHTMLReport(title);
+                  //Do other stuff
                 }
               });
           });
@@ -49,4 +50,4 @@ function loadReportsList() {
     }
   });
 }
-loadReportsList();
+loadCurrentUserReports();

@@ -1,126 +1,153 @@
+var is_tracking = false;
+var userLng = -120;
+var userLat = 50;
 
 // MAPBOX DISPLAY
 function showEventsOnMap() {
-    // Defines basic mapbox data
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYWRhbWNoZW4zIiwiYSI6ImNsMGZyNWRtZzB2angzanBjcHVkNTQ2YncifQ.fTdfEXaQ70WoIFLZ2QaRmQ';
-    const map = new mapboxgl.Map({
-        container: 'map', // Container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
-        center: [-122.964274, 49.236082], // Starting position
-        zoom: 8 // Starting zoom
-    });
+  // Defines basic mapbox data
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoiYWRhbWNoZW4zIiwiYSI6ImNsMGZyNWRtZzB2angzanBjcHVkNTQ2YncifQ.fTdfEXaQ70WoIFLZ2QaRmQ";
+  const map = new mapboxgl.Map({
+    container: "map", // Container ID
+    style: "mapbox://styles/mapbox/streets-v11", // Styling URL
+    center: [userLng, userLat], // Starting position
+    zoom: 12, // Starting zoom
+  });
 
-    // Add user controls to map
-    map.addControl(new mapboxgl.NavigationControl());
+  // Add user controls to map
+  map.addControl(new mapboxgl.NavigationControl());
 
-    // Adds map features
-    map.on('load', () => {
-        const features = []; // Defines an empty array for information to be added to
+  // Adds map features
+  map.on("load", () => {
+    const features = []; // Defines an empty array for information to be added to
 
-        // Defines map pin icon
-        map.loadImage(
-            'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
-            (error, image) => {
-                if (error) throw error;
-              
+    // Defines map pin icon
+    map.loadImage(
+      "https://cdn.pixabay.com/photo/2014/04/02/10/38/sign-304093_1280.png",
+      (error, image) => {
+        if (error) throw error;
 
-                // Add the image to the map style.
-                map.addImage('eventpin', image); // Pin Icon
+        //https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png
+        // Add the image to the map style.
+        map.addImage("eventpin", image); // Pin Icon
 
-                // READING information from "events" collection in Firestore
-                db.collection("hazards").get().then(allHazards => {
-                    allHazards.forEach(hazard => {
-                        // get hike Coordinates
-                        lng = hazard.data().lng;
-                        lat = hazard.data().lat; 
-                        console.log(lng,lat);
-                        coordinates = [lng, lat];
-                        console.log(coordinates);
-                        //read name and the details of hike
-                        event_name = hazard.data().name; // Event Name
-                        preview = hazard.data().details; // Text Preview
-         
+        // READING information from "events" collection in Firestore
+        db.collection("hazards")
+          .get()
+          .then((allHazards) => {
+            allHazards.forEach((hazard) => {
+              // get Hazard Coordinates
+              lng = hazard.data().lng;
+              lat = hazard.data().lat;
+              coordinates = [lng, lat];
+              console.log(lng, lat);
+              console.log(coordinates);
+              //read name and the details of hazard
+              event_name = hazard.data().title; // Event Name
+              preview = hazard.data().description; // Text Preview
 
-                        // Pushes information into the features array
-                        features.push({
-                            'type': 'Feature',
-                            'properties': {
-                                'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`
-                            },
-                            'geometry': {
-                                'type': 'Point',
-                                'coordinates': coordinates
-                            }
-                        });
-                    })
-
-                    // Adds features as a source to the map
-                    map.addSource('places', {
-                        'type': 'geojson',
-                        'data': {
-                            'type': 'FeatureCollection',
-                            'features': features
-                        }
-                    });
-
-                    // Creates a layer above the map displaying the pins
-                    map.addLayer({
-                        'id': 'places',
-                        'type': 'symbol',
-                        'source': 'places',
-                        'layout': {
-                            'icon-image': 'eventpin', // Pin Icon
-                            'icon-size': 0.1, // Pin Size
-                            'icon-allow-overlap': true // Allows icons to overlap
-                        }
-                    });
-
-                    // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
-                    map.on('click', 'places', (e) => {
-                        // Copy coordinates array.
-                        const coordinates = e.features[0].geometry.coordinates.slice();
-                        const description = e.features[0].properties.description;
-
-                        // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
-                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                        }
-
-                        new mapboxgl.Popup()
-                            .setLngLat(coordinates)
-                            .setHTML(description)
-                            .addTo(map);
-                    });
-
-                    // Change the cursor to a pointer when the mouse is over the places layer.
-                    map.on('mouseenter', 'places', () => {
-                        map.getCanvas().style.cursor = 'pointer';
-                    });
-
-                    // Defaults cursor when not hovering over the places layer
-                    map.on('mouseleave', 'places', () => {
-                        map.getCanvas().style.cursor = '';
-                    });
-
-                    //Get User Location
-                    map.addControl(
-                        new mapboxgl.GeolocateControl({
-                        positionOptions: {
-                        enableHighAccuracy: true
-                        },
-                        // When active the map will receive updates to the device's location as it changes.
-                        trackUserLocation: true,
-                        // Draw an arrow next to the location dot to indicate which direction the device is heading.
-                        showUserHeading: true
-                        })
-
-                    );
-                    
-
-                })
-
+              // Pushes information into the features array
+              features.push({
+                type: "Feature",
+                properties: {
+                  description: `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hazard.html?id=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`,
+                },
+                geometry: {
+                  type: "Point",
+                  coordinates: coordinates,
+                },
+              });
             });
-    })
+
+            // Adds features as a source to the map
+            map.addSource("places", {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: features,
+              },
+            });
+
+            // Creates a layer above the map displaying the pins
+            map.addLayer({
+              id: "places",
+              type: "symbol",
+              source: "places",
+              layout: {
+                "icon-image": "eventpin", // Pin Icon
+                "icon-size": 0.03, // Pin Size
+                "icon-allow-overlap": true, // Allows icons to overlap
+              },
+            });
+
+            // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
+            map.on("click", "places", (e) => {
+              // Copy coordinates array.
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const description = e.features[0].properties.description;
+
+              // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
+
+              new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+            });
+
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on("mouseenter", "places", () => {
+              map.getCanvas().style.cursor = "pointer";
+            });
+
+            // Defaults cursor when not hovering over the places layer
+            map.on("mouseleave", "places", () => {
+              map.getCanvas().style.cursor = "";
+            });
+
+  //Show User Location on map
+  const geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    // When active the map will receive updates to the device's location as it changes.
+    trackUserLocation: true,
+    // Draw an arrow next to the location dot to indicate which direction the device is heading.
+    showUserHeading: true,
+  });
+  map.addControl(geolocate);
+  geolocate.on("geolocate", () => {});
+  geolocate.on("trackuserlocationstart", () => {
+    is_tracking = true;
+    console.log("is trackin");
+  });
+  geolocate.off("trackuserlocationstart", () => {
+    is_tracking = false;
+    console.log("isnt trackin");
+  });
+
+
+          });
+      }
+    );
+  });
 }
 
-showEventsOnMap()
+
+
+//Get User Location For Variables
+navigator.geolocation.getCurrentPosition(locSuccess, locError, {
+  enableHighAccuracy: true,
+});
+function locSuccess(position) {
+  userLng = position.coords.longitude;
+  userLat = position.coords.latitude;
+  console.log(userLng);
+  console.log(userLat);
+  showEventsOnMap();
+}
+function locError() {
+  console.log("Error getting user position");
+}
