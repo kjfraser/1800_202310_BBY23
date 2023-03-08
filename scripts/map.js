@@ -22,29 +22,30 @@ function showEventsOnMap() {
             'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
             (error, image) => {
                 if (error) throw error;
+              
 
                 // Add the image to the map style.
                 map.addImage('eventpin', image); // Pin Icon
 
                 // READING information from "events" collection in Firestore
-                db.collection("hikes").get().then(allEvents => {
-                    allEvents.forEach(doc => {
+                db.collection("hazards").get().then(allHazards => {
+                    allHazards.forEach(hazard => {
                         // get hike Coordinates
-                        lat = doc.data().lat; 
-                        lng = doc.data().lng;
-                        console.log(lat,lng);
+                        lng = hazard.data().lng;
+                        lat = hazard.data().lat; 
+                        console.log(lng,lat);
                         coordinates = [lng, lat];
                         console.log(coordinates);
                         //read name and the details of hike
-                        event_name = doc.data().name; // Event Name
-                        preview = doc.data().details; // Text Preview
+                        event_name = hazard.data().name; // Event Name
+                        preview = hazard.data().details; // Text Preview
          
 
                         // Pushes information into the features array
                         features.push({
                             'type': 'Feature',
                             'properties': {
-                                'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens in a new window">Read more</a>`
+                                'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -100,6 +101,22 @@ function showEventsOnMap() {
                     map.on('mouseleave', 'places', () => {
                         map.getCanvas().style.cursor = '';
                     });
+
+                    //Get User Location
+                    map.addControl(
+                        new mapboxgl.GeolocateControl({
+                        positionOptions: {
+                        enableHighAccuracy: true
+                        },
+                        // When active the map will receive updates to the device's location as it changes.
+                        trackUserLocation: true,
+                        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                        showUserHeading: true
+                        })
+
+                    );
+                    
+
                 })
 
             });

@@ -19,6 +19,3 @@ function insertName() {
 }
 insertName(); //run the function
 
-document.getElementById("load-map").addEventListener("click",()=>{
-    location.href="./map.html";
-});

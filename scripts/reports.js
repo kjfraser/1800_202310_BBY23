@@ -2,17 +2,22 @@
 function createHazardReport() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      db.collection("hazards").add({
-        title: "default",
-        lat: 50,
-        lng: -120,
-        datetime: firebase.firestore.FieldValue.serverTimestamp(),
-        owner: user.uid,
-      }).then((new_rep)=>{
-        db.collection("users").doc(user.uid).update({
-          reports: firebase.firestore.FieldValue.arrayUnion(new_rep.id)
+      db.collection("hazards")
+        .add({
+          title: "default",
+          description: "default",
+          lng: -120,
+          lat: 50,
+          datetime: firebase.firestore.FieldValue.serverTimestamp(),
+          owner: user.uid,
         })
-      });
+        .then((new_rep) => {
+          db.collection("users")
+            .doc(user.uid)
+            .update({
+              reports: firebase.firestore.FieldValue.arrayUnion(new_rep.id),
+            });
+        });
     }
   });
 }
@@ -34,8 +39,10 @@ function loadReportsList() {
               .doc(repID)
               .get()
               .then((report) => {
-                let title = report.data().title;
-                createHTMLReport(title);
+                if (report && report.data()) {
+                  let title = report.data().title;
+                  createHTMLReport(title);
+                }
               });
           });
         });
