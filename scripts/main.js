@@ -19,3 +19,30 @@ function insertName() {
 }
 insertName(); //run the function
 
+function populateHazards() {
+    let hazardCardTemplate = document.getElementById("hazardCardTemplate");
+    let hazardCardGroup = document.getElementById("hazardCardGroup");
+    
+    db.collection("hazards").get()
+        .then(allHazards => {
+            hazards = allHazards.docs;
+            console.log(hazards);
+            hazards.forEach(doc => {
+                var title = doc.data().title; 
+                var description = doc.data().description; 
+                var lat = doc.data().lat;
+                var lng = doc.data().lng;
+                var datetime = doc.data().datetime.toDate();
+                console.log(datetime)
+
+                let hazardCard = hazardCardTemplate.content.cloneNode(true);
+                hazardCard.querySelector('.title').innerHTML = title;     
+                hazardCard.querySelector('.datetime').innerHTML = new Date(datetime).toLocaleString();    
+                hazardCard.querySelector('.description').innerHTML = `Description: ${description}`;
+                hazardCard.querySelector('.lat').innerHTML = `Latitude: ${lat}`;
+                hazardCard.querySelector('.lng').innerHTML = `Longitude: ${lng}`;
+                hazardCardGroup.appendChild(hazardCard);
+            })
+        })
+}
+populateHazards();

@@ -39,7 +39,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    
+
 </head>
 
 <body>
@@ -58,32 +58,47 @@
     <main>
         <!-- MAPBOX -->
         <div id='map' style='width: 100%; height: 400px;'></div>
-        <!-- MAPBOX -->
-        <div>
-            <div class="card">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Reviews</h5>
-            </div>
-        </div>
-    </main>
 
-    <!-- our own footer goes here-->
-    <footer class="navbar bg-info fixed-bottom">
+        <!-- Hazards List -->
         <div class="container">
-            <span class="material-icons">home</span>
-            <a class="material-icons" href="./hazard-report.html">warning</a>
+            <h2>Hazards:</h2>
+            <div id="details-go-here"></div>
+            <!-- Here is container for cards  -->
+            <div class="container">
+                <div id="hazardCardGroup" class="row row-cols-auto">
+                </div>
+            </div>
         </div>
-    </footer>
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-    <script src="./scripts/firebaseAPI_TEAM23.js"></script>
-    <script src="./scripts/main.js"></script>
-    <script src="./scripts/reports.js"></script>
-    <script src="./scripts/map.js"></script>
-  
-    <!-- <script src="./scripts/script.js"></script> -->
+
+        <template id="hazardCardTemplate">
+            <div class="card bg-secondary">
+                <img class="card-img-top">
+                <div class="card-body bg-light">
+                    <h5 class="title">placeholder</h5>
+                    <p class="description">placeholder</p>
+                    <p class="lat">placeholder</p>
+                    <p class="lng">placeholder</p>
+                    <p class="datetime">placeholder</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- our own footer goes here-->
+        <footer class="navbar bg-info fixed-bottom">
+            <div class="container">
+                <span class="material-icons">home</span>
+                <a class="material-icons" href="./hazard-report.html">warning</a>
+            </div>
+        </footer>
+        <!---------------------------------------------->
+        <!-- Your own JavaScript functions go here    -->
+        <!---------------------------------------------->
+        <script src="./scripts/firebaseAPI_TEAM23.js"></script>
+        <script src="./scripts/main.js"></script>
+        <script src="./scripts/reports.js"></script>
+        <script src="./scripts/map.js"></script>
+
+        <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 
