@@ -67,21 +67,14 @@ function listenFileSelect() {
 listenFileSelect();
 
 function writeHazardReport() {
-    console.log("inside write review")
     let Title = document.getElementById("title").value;
     let Description = document.getElementById("description").value;
-    console.log(Title, Description);
-
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            var currentUser = db.collection("users").doc(user.uid)
-            var userID = user.uid;
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    var userEmail = userDoc.data().email;
+            db.collection("users").doc(user.uid).get()
+                .then((userDoc) => {
                     db.collection("hazards").add({
-                        userID: userID,
+                        userID: user.uid,
                         title: Title,
                         description: Description,
                         lng: userLng,
@@ -90,20 +83,17 @@ function writeHazardReport() {
                     }).then(doc => {
                         console.log(doc.id);
                         uploadPic(doc.id);
-                    }).then((new_rep) => {
+                        console.log("Here");
                         db.collection("users")
                             .doc(user.uid)
                             .update({
-                                reports: firebase.firestore.FieldValue.arrayUnion(new_rep.id),
+                                reports: firebase.firestore.FieldValue.arrayUnion(doc.id),
                             });
-                    })
-                    .then(() => {
-                        //window.location.href = "thanks.html"; //new line added
                     })
                 })
         } else {
             console.log("No user is signed in");
-            window.location.href = 'hazard-report.html';
+            window.location.href = 'login.html';
         }
     });
 }
@@ -130,3 +120,17 @@ function uploadPic(postDocID) {
              console.log("error uploading to cloud storage");
         })
 }
+
+//Get User Location For Variables
+navigator.geolocation.getCurrentPosition(locSuccess, locError, {
+    enableHighAccuracy: true,
+  });
+  function locSuccess(position) {
+    userLng = position.coords.longitude;
+    userLat = position.coords.latitude;
+    console.log(userLng);
+    console.log(userLat);
+  }
+  function locError() {
+    console.log("Error getting user position");
+  }
