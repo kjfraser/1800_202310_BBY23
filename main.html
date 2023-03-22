@@ -36,6 +36,7 @@
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
     <!--MapBox-->
+    <link rel="stylesheet" href="./styles/style.css"> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
@@ -48,12 +49,8 @@
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
+    <nav id="navbarPrimary"></nav>
+
 
     <main>
         <!-- MAPBOX -->
@@ -84,18 +81,15 @@
         </template>
 
         <!-- our own footer goes here-->
-        <footer class="navbar bg-info fixed-bottom">
-            <div class="container">
-                <a class="material-icons" href="./main.html">home</span>
-                <a class="material-icons" href="./hazard-report.html">warning</a>
-            </div>
-        </footer>
+        <nav id="footerPrimary"></nav>
+
         <!---------------------------------------------->
         <!-- Your own JavaScript functions go here    -->
         <!---------------------------------------------->
         <script src="./scripts/firebaseAPI_TEAM23.js"></script>
         <script src="./scripts/main.js"></script>
         <script src="./scripts/map.js"></script>
+        <script src="./scripts/skeleton.js"></script>
 
         <!-- <script src="./scripts/script.js"></script> -->
 
