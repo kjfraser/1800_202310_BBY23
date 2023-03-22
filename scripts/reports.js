@@ -17,6 +17,7 @@ function listenFileSelect() {
 listenFileSelect();
 
 function writeHazardReport() {
+  document.getElementById("create-report").disabled = true;
   let Title = document.getElementById("title").value;
   let Description = document.getElementById("description").value;
   firebase.auth().onAuthStateChanged(user => {
@@ -108,6 +109,7 @@ function uploadPic(postDocID, callback) {
     })
     .catch((error) => {
       console.log("error uploading to cloud storage");
+      callback();
     })
    
 }
