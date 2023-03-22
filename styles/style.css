@@ -34,3 +34,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 2.25rem;
 }
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
