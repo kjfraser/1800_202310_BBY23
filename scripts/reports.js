@@ -17,35 +17,39 @@ function listenFileSelect() {
 listenFileSelect();
 
 function writeHazardReport() {
-    let Title = document.getElementById("title").value;
-    let Description = document.getElementById("description").value;
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            db.collection("users").doc(user.uid).get()
-                .then((userDoc) => {
-                    db.collection("hazards").add({
-                        userID: user.uid,
-                        title: Title,
-                        description: Description,
-                        lng: userLng,
-                        lat: userLat,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    }).then(doc => {
-                        
-                        uploadPic(doc.id);
-                        db.collection("users")
-                            .doc(user.uid)
-                            .update({
-                                reports: firebase.firestore.FieldValue.arrayUnion(doc.id),
-                            });
-                    })
-                })
-        } else {
-            console.log("No user is signed in");
-            window.location.href = 'login.html';
-        }
-    });
+  let Title = document.getElementById("title").value;
+  let Description = document.getElementById("description").value;
+  firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+          db.collection("users").doc(user.uid).get()
+              .then((userDoc) => {
+                  db.collection("hazards").add({
+                      userID: user.uid,
+                      title: Title,
+                      description: Description,
+                      lng: userLng,
+                      lat: userLat,
+                      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                  })
+                  .then(doc => {
+                      uploadPic(doc.id);
+                      db.collection("users")
+                          .doc(user.uid)
+                          .update({
+                              reports: firebase.firestore.FieldValue.arrayUnion(doc.id),
+                          })
+                          .then(() => {
+                            window.location.href = 'thanks.html';
+                          });
+                  })
+              })
+      } else {
+          console.log("No user is signed in");
+          window.location.href = 'hazard-report.html';
+      }
+  });
 }
+
 
 //DO NOT DELTE.
 function updateHazardReport(currentHazardID) {
