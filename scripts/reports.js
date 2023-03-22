@@ -32,15 +32,18 @@ function writeHazardReport() {
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           })
             .then(doc => {
-              uploadPic(doc.id);
-              db.collection("users")
+              uploadPic(doc.id, () => {
+                db.collection("users")
                 .doc(user.uid)
                 .update({
                   reports: firebase.firestore.FieldValue.arrayUnion(doc.id),
                 })
                 .then(() => {
                   window.location.href = 'thanks.html';
-                });
+                })
+              });
+    
+            
             })
         })
     } else {
@@ -84,7 +87,7 @@ function updateHazardReport(currentHazardID) {
   });
 }
 
-function uploadPic(postDocID) {
+function uploadPic(postDocID, callback) {
     console.log("inside uploadPic " + postDocID);
     var storageRef = storage.ref("images/" + postDocID + ""); //TODO: If it stops working add .jpg
 
@@ -99,12 +102,14 @@ function uploadPic(postDocID) {
           })
             .then(function () {
               console.log('Added pic URL to Firestore.');
+              callback();
             })
         })
     })
     .catch((error) => {
       console.log("error uploading to cloud storage");
     })
+   
 }
 
 //Get User Location For Variables

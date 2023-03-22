@@ -12,7 +12,7 @@ function displayHazardInformation(){
 
     document.getElementById("hazardTitle").innerHTML = hazardTitle;
     document.getElementById("hazardImage").src = hazardImage;
-    let imgEvent = document.querySelector( ".hike-img" );
+
     altLat = hazardData.lat;
     altLng = hazardData.lng;
     centerOnLocation = true;
