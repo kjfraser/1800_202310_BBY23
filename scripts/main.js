@@ -34,12 +34,14 @@ function populateHazards() {
                 var timestamp = doc.data().timestamp.toDate();
                 var hazardID = doc.id;
                 let hazardCard = hazardCardTemplate.content.cloneNode(true);
+                let hazardimg = doc.data().image;
                 hazardCard.querySelector('.title').innerHTML = title;     
                 hazardCard.querySelector('.timestamp').innerHTML = new Date(timestamp).toLocaleString();    
                 hazardCard.querySelector('.description').innerHTML = `Description: ${description}`;
                 hazardCard.querySelector('.lat').innerHTML = `Latitude: ${lat}`;
                 hazardCard.querySelector('.lng').innerHTML = `Longitude: ${lng}`;
                 hazardCard.querySelector('#more').href = "hazard-page.html?hazard=" + hazardID;
+                hazardCard.getElementById('card-image card-img-top').src = hazardimg;
                
                
                

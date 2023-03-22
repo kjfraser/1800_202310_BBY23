@@ -2,6 +2,10 @@
     background-color: #132A13 !important;
 }
 
+.navbar.bg-info.fixed-bottom {
+    background-color: #132A13 
+}
+
 .navbar-light .navbar-brand {
     color:  white;
 }
