@@ -57,32 +57,15 @@
 
     <main>
         <!-- MAPBOX -->
-        <div id='map' style='width: 100%; height: 400px;'></div>
+        <div id='map' style='width: 100%; height: 300px;'></div>
 
-        <!-- Hazards List -->
         <div class="container">
-            <h2>Hazards:</h2>
-            <div id="details-go-here"></div>
-            <!-- Here is container for cards  -->
-            <div class="container">
-                <div id="hazardCardGroup" class="row row-cols-auto">
-                </div>
-            </div>
-        </div>
-
-        <template id="hazardCardTemplate">
-            <div class="card bg-secondary">
-                <img class="card-img-top">
-                <div class="card-body bg-light">
-                    <h5 class="title">placeholder</h5>
-                    <p class="description">placeholder</p>
-                    <p class="lat">placeholder</p>
-                    <p class="lng">placeholder</p>
-                    <p class="timestamp">placeholder</p>
-                </div>
-                <a id="more">More</a>
-            </div>
-        </template>
+          <h1><span id="hazardTitle">hazard</span></h1>
+          <div class="position-relative">
+              <img class="haz-img" src="" alt="Hazard photo">
+              <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="saveHikeDocumentIDAndRedirect()">Write Review</button>
+          </div>
+      </div>
 
         <!-- our own footer goes here-->
         <footer class="navbar bg-info fixed-bottom">
@@ -95,8 +78,8 @@
         <!-- Your own JavaScript functions go here    -->
         <!---------------------------------------------->
         <script src="./scripts/firebaseAPI_TEAM23.js"></script>
-        <script src="./scripts/main.js"></script>
         <script src="./scripts/map.js"></script>
+        <script src="./scripts/hazard-page.js"></script>
 
         <!-- <script src="./scripts/script.js"></script> -->
 

@@ -1,18 +1,39 @@
 var is_tracking = false;
 var userLng = -120;
 var userLat = 50;
+var centerOnLocation = false;
+var altLng = 0;
+var altLat = 0;
+var map;
+
 
 // MAPBOX DISPLAY
 function showEventsOnMap() {
   // Defines basic mapbox data
   mapboxgl.accessToken =
     "pk.eyJ1IjoiYWRhbWNoZW4zIiwiYSI6ImNsMGZyNWRtZzB2angzanBjcHVkNTQ2YncifQ.fTdfEXaQ70WoIFLZ2QaRmQ";
-  const map = new mapboxgl.Map({
-    container: "map", // Container ID
-    style: "mapbox://styles/mapbox/streets-v11", // Styling URL
-    center: [userLng, userLat], // Starting position
-    zoom: 12, // Starting zoom
-  });
+
+  if(centerOnLocation){
+    map = new mapboxgl.Map({
+      container: "map", // Container ID
+      style: "mapbox://styles/mapbox/streets-v11", // Styling URL
+      center: [altLng, altLat], // Starting position
+      zoom: 15, // Starting zoom
+    });
+  }else{
+    map = new mapboxgl.Map({
+      container: "map", // Container ID
+      style: "mapbox://styles/mapbox/streets-v11", // Styling URL
+      center: [userLng, userLat], // Starting position
+      zoom: 12, // Starting zoom
+    });
+  }
+
+
+
+
+
+
 
   // Add user controls to map
   map.addControl(new mapboxgl.NavigationControl());
@@ -40,8 +61,8 @@ function showEventsOnMap() {
               lng = hazard.data().lng;
               lat = hazard.data().lat;
               coordinates = [lng, lat];
-              console.log(lng, lat);
-              console.log(coordinates);
+              // console.log(lng, lat);
+              // console.log(coordinates);
               //read name and the details of hazard
               event_name = hazard.data().title; // Event Name
               preview = hazard.data().description; // Text Preview
@@ -136,6 +157,11 @@ function showEventsOnMap() {
 }
 
 
+// map.setCenter(new mapboxgl.LngLat(newLong, newLat));
+// map.zoom = newZoom;
+
+
+
 
 //Get User Location For Variables
 navigator.geolocation.getCurrentPosition(locSuccess, locError, {
@@ -144,10 +170,16 @@ navigator.geolocation.getCurrentPosition(locSuccess, locError, {
 function locSuccess(position) {
   userLng = position.coords.longitude;
   userLat = position.coords.latitude;
-  console.log(userLng);
-  console.log(userLat);
   showEventsOnMap();
+
 }
 function locError() {
   console.log("Error getting user position");
 }
+
+// function centerOn( newLong, newLat, newZoom){
+//   map.flyTo({
+//     center: [newLong, newLat],
+//     zoom: newZoom
+//   });
+// }
