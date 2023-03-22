@@ -23,7 +23,7 @@ function populateHazards() {
     let hazardCardTemplate = document.getElementById("hazardCardTemplate");
     let hazardCardGroup = document.getElementById("hazardCardGroup");
     
-    db.collection("hazards").get()
+    db.collection("hazards").orderBy('timestamp', "desc").get()
         .then(allHazards => {
             hazards = allHazards.docs;
             hazards.forEach(doc => {
@@ -32,13 +32,18 @@ function populateHazards() {
                 var lat = doc.data().lat;
                 var lng = doc.data().lng;
                 var timestamp = doc.data().timestamp.toDate();
-
+                var hazardID = doc.id;
                 let hazardCard = hazardCardTemplate.content.cloneNode(true);
                 hazardCard.querySelector('.title').innerHTML = title;     
                 hazardCard.querySelector('.timestamp').innerHTML = new Date(timestamp).toLocaleString();    
                 hazardCard.querySelector('.description').innerHTML = `Description: ${description}`;
                 hazardCard.querySelector('.lat').innerHTML = `Latitude: ${lat}`;
                 hazardCard.querySelector('.lng').innerHTML = `Longitude: ${lng}`;
+                hazardCard.querySelector('#more').href = "hazard-page.html?hazard=" + hazardID;
+               
+               
+               
+               
                 hazardCardGroup.appendChild(hazardCard);
             })
         })
