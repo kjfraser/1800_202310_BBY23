@@ -8,8 +8,10 @@ function displayHazardInformation(){
     hazardData = thisHazard.data();
     // hazardCode = hazardData.code;
     hazardTitle = hazardData.title;
+    hazardImage = hazardData.image;
 
-    document.getElementById("hazardTitle").innerHTML = hazardTitle
+    document.getElementById("hazardTitle").innerHTML = hazardTitle;
+    document.getElementById("hazardImage").src = hazardImage;
     let imgEvent = document.querySelector( ".hike-img" );
     altLat = hazardData.lat;
     altLng = hazardData.lng;

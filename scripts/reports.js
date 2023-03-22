@@ -51,7 +51,7 @@ function writeHazardReport() {
 }
 
 
-//DO NOT DELTE.
+//DO NOT DELETE.
 function updateHazardReport(currentHazardID) {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -86,7 +86,7 @@ function updateHazardReport(currentHazardID) {
 
 function uploadPic(postDocID) {
     console.log("inside uploadPic " + postDocID);
-    var storageRef = storage.ref("images/" + postDocID + ".jpg");
+    var storageRef = storage.ref("images/" + postDocID + ""); //TODO: If it stops working add .jpg
 
     storageRef.put(ImageFile)   //global variable ImageFile
         .then(function () {
