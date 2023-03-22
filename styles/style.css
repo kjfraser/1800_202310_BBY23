@@ -3,7 +3,7 @@
 }
 
 .navbar.bg-info.fixed-bottom {
-    background-color: #132A13 
+    background-color: #132A13 !important;
 }
 
 .navbar-light .navbar-brand {
@@ -34,11 +34,20 @@ body {
     background-color: white;
 }
 
+
+
 .navbar-brand{
     font-family: 'Roboto', sans-serif;
     font-size: 2.25rem;
 }
 
+
+
 .navbar-light .navbar-nav .nav-link {
     color: white;
+}
+
+.material-icons {
+    color:white;
+    
 }
