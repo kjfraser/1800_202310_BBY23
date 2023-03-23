@@ -12,16 +12,16 @@ function populateUserInfo() {
             currentUser.get()
                 .then(userDoc => {
                     //get the data fields of the user
-                    var userName = userDoc.data().user.displayName;
+                    var userName = userDoc.data().name;
                     var userEmail = userDoc.data().email;
                    
 
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
-                        document.getElementById("nameInput").value = userName;
+                        document.getElementById('nameInput').value = userName;
                     }
-                    if (userSchool != null) {
-                        document.getElementById("emailInput").value = userEmail;
+                    if (userEmail != null) {
+                        document.getElementById('emailInput').value = userEmail;
                     }
                     
                 })
