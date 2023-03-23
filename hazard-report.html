@@ -40,15 +40,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link rel="stylesheet" href="./styles/style.css">
 
 </head>
 
 <body>
     <!-- our own navbar goes here -->
-    <nav class="navbar navbar-light bg-light">
-        <p>Create a Report</p>
-    </nav>
+    <nav id="navbarPrimary"></nav>
+
 
     <!-- place holder content, does not interact with database -->
     <div class="mb-3">
@@ -72,17 +71,14 @@
 
 
     <!-- our own footer goes here-->
-    <footer class="navbar bg-info fixed-bottom">
-        <div class="container">
-            <span class="material-icons">arrow_back</span>
-            <span class="material-icons">navigate_next</span>
-        </div>
-    </footer>
+    <nav id="footerPrimary"></nav>
+
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_TEAM23.js"></script>
     <script src="./scripts/reports.js"></script>
+    <script src="./scripts/skeleton.js"></script>
     <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
