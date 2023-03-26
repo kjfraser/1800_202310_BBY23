@@ -71,7 +71,7 @@ function populateHazards() {
                 hazardCard.getElementById('card-image card-img-top').src = hazardimg;
                
                 hazardCard.querySelector('i').id = 'save-' + hazardID;          
-                hazardCard.querySelector('i').onclick = () => saveBookmark(hazardID);
+                hazardCard.querySelector('i').onclick = () => updateBookmark(hazardID);
 
                 currentUser.get().then(userDoc => {
                     //get the user name
@@ -88,17 +88,42 @@ function populateHazards() {
 //populateHazards();
 
 
-function saveBookmark(hazardID) {
-    currentUser.set({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(hazardID)
-        }, {
-            merge: true
-        })
-        .then(function () {
-            console.log("bookmark has been saved for: " + currentUser);
-            var iconID = 'save-' + hazardID;
-            //console.log(iconID);
-						//this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'bookmark';
-        });
-}
+function updateBookmark(hazardID) {
+    currentUser.get().then((userDoc) => {
+      bookmarksNow = userDoc.data().bookmarks;
+      // console.log(bookmarksNow)
+  
+  //check if this bookmark already existed in firestore:
+      if (bookmarksNow.includes(hazardID)) {
+        console.log(hazardID);
+  //if it does exist, then remove it
+        currentUser
+          .update({
+            bookmarks: firebase.firestore.FieldValue.arrayRemove(hazardID),
+          })
+          .then(function () {
+            console.log("This bookmark is removed for" + currentUser);
+            var iconID = "save-" + hazardID;
+            console.log(iconID);
+            document.getElementById(iconID).innerText = "bookmark_border";
+          });
+      } else {
+  //if it does not exist, then add it
+        currentUser
+          .set(
+            {
+              bookmarks: firebase.firestore.FieldValue.arrayUnion(hazardID),
+            },
+            {
+              merge: true,
+            }
+          )
+          .then(function () {
+            console.log("This bookmark is for" + currentUser);
+            var iconID = "save-" + hazardID;
+            console.log(iconID);
+            document.getElementById(iconID).innerText = "bookmark";
+          });
+      }
+    });
+  }

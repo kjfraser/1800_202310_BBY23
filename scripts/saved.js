@@ -30,16 +30,10 @@ function getBookmarks(user) {
       // Get a reference to the template element
       let cardTemplate = document.getElementById("savedCardTemplate");
 
-      // Get a reference to the container element where the cards will be displayed
-      let cardContainer = document.getElementById("hazardCardGroup");
-
-      // Clear the container element before adding new cards
-      cardContainer.innerHTML = '';
-
       // Iterate through the ARRAY of bookmarked hikes (document ID's)
-      bookmarks.forEach(thisHikeID => {
-        console.log(thisHikeID);
-        db.collection("hikes").doc(thisHikeID).get().then(doc => {
+      bookmarks.forEach(bookmarks => {
+        console.log(bookmarks);
+        db.collection("users").doc(bookmarks).get().then(doc => {
           var title = doc.data().title; 
           var description = doc.data().description; 
           var lat = doc.data().lat;
@@ -58,11 +52,11 @@ function getBookmarks(user) {
           card.querySelector('.lat').innerHTML = `Latitude: ${lat}`;
           card.querySelector('.lng').innerHTML = `Longitude: ${lng}`;
           card.querySelector('#more').href = "hazard-page.html?hazard=" + hazardID;
-          card.querySelector('.card-img-top').src = hazardimg;
+          card.getElementById('card-image card-img-top').src = hazardimg;
                    
                     
 										//Finally, attach this new card to the gallery
-             hazardCardGroup.appendChild(newcard);
+             hazardCardGroup.appendChild(card);
                 })
             });
         })
