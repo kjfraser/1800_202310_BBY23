@@ -1,7 +1,7 @@
-//---------------------------------------------------
-// This function loads the parts of your skeleton 
-// (navbar, footer, and other things) into html doc. 
-//---------------------------------------------------
+//This file loads all scripts that will be required for most JS pages
+
+
+
 function loadSkeleton() {
 
     firebase.auth().onAuthStateChanged(function (user) {
@@ -23,7 +23,6 @@ function loadSkeleton() {
     });
 }
 loadSkeleton(); //invoke the function
-
 
 function logout() {
     firebase.auth().signOut().then(() => {
