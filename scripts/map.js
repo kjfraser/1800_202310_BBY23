@@ -66,12 +66,13 @@ function showEventsOnMap() {
               //read name and the details of hazard
               event_name = hazard.data().title; // Event Name
               preview = hazard.data().description; // Text Preview
-
+              image = hazard.data().image;
+              
               // Pushes information into the features array
               features.push({
                 type: "Feature",
                 properties: {
-                  description: `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hazard.html?id=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`,
+                  description: `<strong>${event_name}</strong><p>${preview}</p><img src="` + image + `" alt="No Image"> <br> <a href="/hazard-page.html?hazard=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`,
                 },
                 geometry: {
                   type: "Point",
@@ -171,8 +172,9 @@ function locSuccess(position) {
   userLng = position.coords.longitude;
   userLat = position.coords.latitude;
   showEventsOnMap();
-
+  
 }
+
 function locError() {
   console.log("Error getting user position");
 }

@@ -8,13 +8,30 @@ function loadSkeleton() {
         if (user) {
             // User is signed in.
             // Do something for the user here.
-            console.log($('#navbarPrimary').load('./text/nav_after_login.html'));
-            console.log($('#footerPrimary').load('./text/footer.html'));
+            $('#navbarPrimary').load('./text/nav_after_login.html', () => {
+                document.getElementById("logout").addEventListener("click", () => {
+                    logout();
+                });
+            });
+            $('#footerPrimary').load('./text/footer.html');
+            
         } else {
             // No user is signed in.
-            console.log($('#navbarPrimary').load('./text/nav_before_login.html'));
-            console.log($('#footerPrimary').load('./text/footer.html'));
+            $('#navbarPrimary').load('./text/nav_before_login.html');
+            $('#footerPrimary').load('./text/footer.html');
         }
     });
 }
 loadSkeleton(); //invoke the function
+
+
+function logout() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        console.log("logging out user");
+        window.location = "index.html";
+      }).catch((error) => {
+        // An error happened.
+      });
+}
+

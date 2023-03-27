@@ -56,3 +56,18 @@ body {
     color: black;
     cursor: pointer;
 }
+
+
+
+/* MapBox Designs */
+.mapboxgl-popup-content > img {
+
+    border-radius: 20px;
+    align-self: center;
+    justify-self: center;
+    max-width: 100%;
+}
+
+#hazardImage {
+    max-height: 50vh;
+}
