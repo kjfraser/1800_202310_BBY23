@@ -20,39 +20,31 @@ doAll();
 
 
 function populateUserInfo() {
-  firebase.auth().onAuthStateChanged(user => {
-      // Check if user is signed in:
-      if (user) {
-          //go to the correct user document by referencing to the user uid
-          currentUser = db.collection("users").doc(user.uid)
-          //get the document for current user.
-          currentUser.get()
-              .then(userDoc => {
-                  //get the data fields of the use
-                  var userName = userDoc.data().name;
-                  var userEmail = userDoc.data().email;
+//go to the correct user document by referencing to the user uid
+currentUser = db.collection("users").doc(user.uid)
+//get the document for current user.
+currentUser.get()
+    .then(userDoc => {
+        //get the data fields of the use
+        var userName = userDoc.data().name;
+        var userEmail = userDoc.data().email;
 
 
-                  //if the data fields are not empty, then write them in to the form.
-                  if (userName != null) {
-                      document.getElementById('nameInput').value = userName;
-                  }
-                  if (userEmail != null) {
-                      document.getElementById('emailInput').value = userEmail;
-                  }
+        //if the data fields are not empty, then write them in to the form.
+        if (userName != null) {
+            document.getElementById('nameInput').value = userName;
+        }
+        if (userEmail != null) {
+            document.getElementById('emailInput').value = userEmail;
+        }
 
-              })
-      } else {
-          // No user is signed in.
-          console.log ("No user is signed in");
-      }
-  });
+    })
 }
 
 
 
 function loadUserReportsList(user) {
-  let newcardTemplate = document.getElementById("hazardCardTemplate");
+  let cardTemplate = document.getElementById("hazardCardTemplate");
   let bookmarkedHazardsGroup = document.getElementById("my_reports");
       db.collection("users")
         .doc(user.uid)
@@ -60,7 +52,7 @@ function loadUserReportsList(user) {
         .then((user) => {
           var reports = user.data().reports;
           reports.forEach((repID) => {
-            fillHazardCard(repID,newcardTemplate,bookmarkedHazardsGroup);
+            fillHazardCard(repID,cardTemplate,bookmarkedHazardsGroup);
             db.collection("hazards").doc(repID).get().then((doc) => {
       
               console.log(repID.date().title);
@@ -84,12 +76,12 @@ function getBookmarks(user) {
           var bookmarks = userDoc.data().bookmarks;
           
           // Get pointer the new card template
-          let newcardTemplate = document.getElementById("hazardCardTemplate");
+          let cardTemplate = document.getElementById("hazardCardTemplate");
           let bookmarkedHazardsGroup = document.getElementById("saved_reports");
 
           // Iterate through the ARRAY of bookmarked hikes (document ID's)
           bookmarks.forEach(hazardID => {
-            fillHazardCard(hazardID, newcardTemplate, bookmarkedHazardsGroup);
+            fillHazardCard(hazardID, cardTemplate, bookmarkedHazardsGroup);
           });
       })
 }
@@ -99,7 +91,7 @@ function fillHazardCard(hazardID, template, group){
     
     //clone the new card
     let hazardCard = template.content.cloneNode(true);
-
+    
     //update title and some pertinant information
     var title = hazardDoc.data().title; 
     var description = hazardDoc.data().description; 
@@ -112,14 +104,16 @@ function fillHazardCard(hazardID, template, group){
     hazardCard.getElementById('card-image card-img-top').src = hazardimg;
 
     //Shows that card has been saved.
-    hazardCard.querySelector("i").id = "save-" + hazardID;
+    hazardCard.querySelector("i").class = "save-" + hazardID;
     hazardCard.querySelector("i").onclick = () => updateBookmark(hazardID);
 
     currentUser.get().then((userDoc) => {
+      console.log(hazardCard.querySelector(".save-" + hazardID));
       //get the user name
       var bookmarks = userDoc.data().bookmarks;
       if (bookmarks.includes(hazardID)) {
-        document.getElementById("save-" + hazardID).innerText = "bookmark";
+        // document.getElementById("save-" + hazardID).innerText = "bookmark";
+        hazardCard.querySelector("i").innerText = "bookmark";
       }
     });
 

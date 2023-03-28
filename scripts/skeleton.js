@@ -3,7 +3,6 @@
 
 
 function loadSkeleton() {
-
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
@@ -24,12 +23,22 @@ function loadSkeleton() {
 }
 loadSkeleton(); //invoke the function
 
+function authenticate(){
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            window.location = "main.html";
+        }
+    });
+}
+
 function logout() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
         console.log("logging out user");
+        window.location = "index.html";
       }).catch((error) => {
         // An error happened.
       });
 }
+
 
