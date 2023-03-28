@@ -55,7 +55,7 @@ function fillHazardCard(hazardID, template, group){
 
     //Shows that card has been saved.
     hazardCard.querySelector("i").id = "save-" + hazardID;
-    hazardCard.querySelector("i").onclick = () => saveBookmark(hazardID);
+    hazardCard.querySelector("i").onclick = () => updateBookmark(hazardID);
 
     currentUser.get().then((userDoc) => {
       //get the user name
