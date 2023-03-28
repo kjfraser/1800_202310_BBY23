@@ -14,7 +14,7 @@ function doAll() {
     }
   });
 }
-doAll();
+c
 
 function loadUserReportsList(user) {
   let newcardTemplate = document.getElementById("hazardCardTemplate");

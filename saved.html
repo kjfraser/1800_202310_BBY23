@@ -48,32 +48,33 @@
         <!-- Hazards List -->
 
 
-        <div class="container">
-            <h1>Bookmarked Hazards</h1>
-            <!-- Here is container for cards  -->
-            <div class="container">
-                <div id="hazardCardGroup" class="row row-cols-auto">
-                </div>
-            </div>
-        </div>
-
-
     
     <!-- Templates for general use, not displayed -->
-    <template id="savedCardTemplate">
-            <div class="card py-2 mx-2 bg-light" style="width: 10rem;">
-                <img class="card-image card-img-top" src=" ..." alt="...">
-                <div class="card-body">
-                    <h5 class="title">placeholder</h5>
-                    <p class="description">placeholder</p>
-                    <p class="lat">placeholder</p>
-                    <p class="lng">placeholder</p>
-                    <p class="timestamp">placeholder</p>
-                </div>   
-                <a id="more" class="btn btn-lg btn-success" role="button">Read More</a>
-                
+    <div class="container" >
+        <h1>Bookmark Reports</h1>
+        <!-- Here is container for cards  -->
+        <div class="container">
+            <div id="bookmark" class="row row-cols-auto">
             </div>
-     </template>
+        </div>
+    </div>
+
+
+
+    <!-- Templates for general use, not displayed -->
+    <template id="hazardCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem; border-radius: 20px;">
+            <img id="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="title">placeholder</h5>
+                <p class="description">placeholder</p>
+                <p class="timestamp">placeholder</p>
+            </div>
+            <div id="icons"><i class="material-icons">bookmark_border</i></div>
+           <a id="more" class="btn btn-lg btn-success" role="button">Read More</a>
+        </div>
+    </template>
+</div>
 
 
 
