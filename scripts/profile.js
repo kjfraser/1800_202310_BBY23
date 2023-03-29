@@ -21,7 +21,6 @@ doAll();
 
 function populateUserInfo() {
 //go to the correct user document by referencing to the user uid
-currentUser = db.collection("users").doc(user.uid)
 //get the document for current user.
 currentUser.get()
     .then(userDoc => {
@@ -86,38 +85,3 @@ function getBookmarks(user) {
       })
 }
 
-function fillHazardCard(hazardID, template, group){
-  db.collection("hazards").doc(hazardID).get().then(hazardDoc => {
-    
-    //clone the new card
-    let hazardCard = template.content.cloneNode(true);
-    
-    //update title and some pertinant information
-    var title = hazardDoc.data().title; 
-    var description = hazardDoc.data().description; 
-    var timestamp = hazardDoc.data().timestamp.toDate();
-    let hazardimg = hazardDoc.data().image;
-    hazardCard.querySelector('.title').innerHTML = title;     
-    hazardCard.querySelector('.timestamp').innerHTML = new Date(timestamp).toLocaleString();    
-    hazardCard.querySelector('.description').innerHTML = `Description: ${description}`;
-    hazardCard.querySelector('#more').href = "hazard-page.html?hazard=" + hazardID;
-    hazardCard.getElementById('card-image card-img-top').src = hazardimg;
-
-    //Shows that card has been saved.
-    hazardCard.querySelector("i").class = "save-" + hazardID;
-    hazardCard.querySelector("i").onclick = () => updateBookmark(hazardID);
-
-    currentUser.get().then((userDoc) => {
-      console.log(hazardCard.querySelector(".save-" + hazardID));
-      //get the user name
-      var bookmarks = userDoc.data().bookmarks;
-      if (bookmarks.includes(hazardID)) {
-        // document.getElementById("save-" + hazardID).innerText = "bookmark";
-        hazardCard.querySelector("i").innerText = "bookmark";
-      }
-    });
-
-    //Finally, attach this new card to the gallery
-    group.appendChild(hazardCard);
-})
-}
