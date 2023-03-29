@@ -71,3 +71,7 @@ body {
 #hazardImage {
     max-height: 50vh;
 }
+
+#hazardCardGroup {
+    padding-bottom: 50px;
+}
