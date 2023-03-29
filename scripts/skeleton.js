@@ -47,24 +47,26 @@ function fillHazardCard(hazardID, template, group) {
     .then(async (hazardDoc) => {
       //clone the new card
       let hazardCard = template.content.cloneNode(true);
-
       //update title and some pertinant information
       var title = hazardDoc.data().title;
       var description = hazardDoc.data().description;
       var timestamp = hazardDoc.data().timestamp.toDate();
       var hazardimg = hazardDoc.data().image;
       var user;
-    
+      //get the user name
+      await db
+        .collection("users")
+        .doc(hazardDoc.data().userID)
+        .get()
+        .then((userDoc) => {
+          user = userDoc;
+        })
+        .catch(() => {
+          user = "user unknown";
+        });
 
-             //get the user name
-        
-             await db.collection("users").doc(hazardDoc.data().userID).get().then((userDoc) =>{
-              user = userDoc;
-            }).catch(() => {
-              user = "user unknown";
-            });
-
-      hazardCard.querySelector(".user").innerHTML = "posted by: " + user.data().name;
+      hazardCard.querySelector(".user").innerHTML =
+        "posted by: " + user.data().name;
       hazardCard.querySelector(".title").innerHTML = title;
       hazardCard.querySelector(".timestamp").innerHTML = new Date(
         timestamp
@@ -83,12 +85,10 @@ function fillHazardCard(hazardID, template, group) {
         "save-" + hazardID;
       hazardCard.querySelector("i").onclick = () => updateBookmark(hazardID);
       currentUser.get().then((userDoc) => {
- 
-
         //Set Bookmark flags
         var bookmarks = userDoc.data().bookmarks;
         if (bookmarks.includes(hazardID)) {
-           setBookMarkFlag(hazardID,"bookmark")
+          setBookMarkFlag(hazardID, "bookmark");
         }
       });
 
@@ -101,13 +101,13 @@ function updateBookmark(hazardID) {
   currentUser.get().then((userDoc) => {
     bookmarksNow = userDoc.data().bookmarks;
     //check if this bookmark already existed in firestore:
-    if (bookmarksNow.includes(hazardID)) {
+    if (bookmarksNow && bookmarksNow.includes(hazardID)) {
       //if it does exist, then remove it
       currentUser
         .update({
           bookmarks: firebase.firestore.FieldValue.arrayRemove(hazardID),
         })
-        .then(setBookMarkFlag(hazardID,"bookmark_border"));
+        .then(setBookMarkFlag(hazardID, "bookmark_border"));
     } else {
       //if it does not exist, then add it
       currentUser
@@ -119,15 +119,14 @@ function updateBookmark(hazardID) {
             merge: true,
           }
         )
-        .then(setBookMarkFlag(hazardID,"bookmark"));
+        .then(setBookMarkFlag(hazardID, "bookmark"));
     }
   });
 }
 
-function setBookMarkFlag(hazardID, innerText){
-    var elements = document.getElementsByClassName("save-" + hazardID);
-    Array.from(elements).forEach((element) => {
-      element.querySelector("i").innerText = innerText;
-    });
-
+function setBookMarkFlag(hazardID, innerText) {
+  var elements = document.getElementsByClassName("save-" + hazardID);
+  Array.from(elements).forEach((element) => {
+    element.querySelector("i").innerText = innerText;
+  });
 }
