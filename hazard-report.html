@@ -34,10 +34,10 @@
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--MapBox-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
@@ -52,7 +52,7 @@
     <!-- place holder content, does not interact with database -->
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="" class="form-control" id="title" placeholder="Hazard">
+        <input type="" class="form-control" id="title" placeholder="Hazard" onchange="listenTitleChange()">
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Description</label>

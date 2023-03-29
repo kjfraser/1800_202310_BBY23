@@ -44,7 +44,7 @@ function fillHazardCard(hazardID, template, group) {
   db.collection("hazards")
     .doc(hazardID)
     .get()
-    .then((hazardDoc) => {
+    .then(async (hazardDoc) => {
       //clone the new card
       let hazardCard = template.content.cloneNode(true);
 
@@ -52,16 +52,30 @@ function fillHazardCard(hazardID, template, group) {
       var title = hazardDoc.data().title;
       var description = hazardDoc.data().description;
       var timestamp = hazardDoc.data().timestamp.toDate();
-      let hazardimg = hazardDoc.data().image;
+      var hazardimg = hazardDoc.data().image;
+      var user;
+    
+
+             //get the user name
+        
+             await db.collection("users").doc(hazardDoc.data().userID).get().then((userDoc) =>{
+              user = userDoc;
+            }).catch(() => {
+              user = "user unknown";
+            });
+
+      hazardCard.querySelector(".user").innerHTML = "posted by: " + user.data().name;
       hazardCard.querySelector(".title").innerHTML = title;
       hazardCard.querySelector(".timestamp").innerHTML = new Date(
         timestamp
       ).toLocaleString();
+
+      //Fill Ins
       hazardCard.querySelector(
         ".description"
       ).innerHTML = `Description: ${description}`;
       hazardCard.querySelector("#more").href =
-        "hazard-page.html?hazard=" + hazardID;
+        "hazard_view_page.html?hazard=" + hazardID;
       hazardCard.getElementById("card-image card-img-top").src = hazardimg;
 
       //Shows that card has been saved.
@@ -69,11 +83,11 @@ function fillHazardCard(hazardID, template, group) {
         "save-" + hazardID;
       hazardCard.querySelector("i").onclick = () => updateBookmark(hazardID);
       currentUser.get().then((userDoc) => {
-        //get the user name
+ 
+
+        //Set Bookmark flags
         var bookmarks = userDoc.data().bookmarks;
         if (bookmarks.includes(hazardID)) {
-            
-   
            setBookMarkFlag(hazardID,"bookmark")
         }
       });

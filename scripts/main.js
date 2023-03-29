@@ -25,41 +25,8 @@ function populateHazards() {
     .get()
     .then((allHazards) => {
       hazards = allHazards.docs;
-      hazards.forEach((doc) => {
-        var title = doc.data().title;
-        var description = doc.data().description;
-        var timestamp = doc.data().timestamp.toDate();
-        var hazardID = doc.id;
-        let hazardCard = hazardCardTemplate.content.cloneNode(true);
-        let hazardimg = doc.data().image;
-        hazardCard.querySelector(".title").innerHTML = title;
-        hazardCard.querySelector(".timestamp").innerHTML = new Date(
-          timestamp
-        ).toLocaleString();
-        hazardCard.querySelector(
-          ".description"
-        ).innerHTML = `Description: ${description}`;
-        hazardCard.querySelector("#more").href =
-          "hazard-page.html?hazard=" + hazardID;
-        hazardCard.getElementById("card-image card-img-top").src = hazardimg;
-
-        hazardCard.querySelector("i").class = "save-" + hazardID;
-        hazardCard.querySelector("i").onclick = () => updateBookmark(hazardID);
-
-        currentUser.get().then((userDoc) => {
-          //get the user name
-          var bookmarks = userDoc.data().bookmarks;
-          if (bookmarks.includes(hazardID)) {
-            
-            var elements = document.getElementsByClassName("save-" + hazardID);
-           console.log(elements);
-            Array.from(elements).forEach(element =>{
-              element.innerText = "bookmark";
-            })
-          }
-        });
-
-        hazardCardGroup.appendChild(hazardCard);
+      hazards.forEach((hazard) => {
+        fillHazardCard(hazard.id,hazardCardTemplate,hazardCardGroup);
       });
     });
 }

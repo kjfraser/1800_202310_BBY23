@@ -3,11 +3,11 @@ function displayHazardInformation(){
   let params = new URL(window.location.href); //get url from search bar
   let ID = params.searchParams.get("hazard");
 
-  console.log(ID);
   db.collection("hazards").doc(ID).get().then(thisHazard => {
     hazardData = thisHazard.data();
     // hazardCode = hazardData.code;
     hazardTitle = hazardData.title;
+    hazaedDetails = hazardData.details;
     hazardImage = hazardData.image;
 
     document.getElementById("hazardTitle").innerHTML = hazardTitle;
@@ -16,7 +16,6 @@ function displayHazardInformation(){
     altLat = hazardData.lat;
     altLng = hazardData.lng;
     centerOnLocation = true;
-    // imgEvent.src = "../images/" + hazardCode + ".jpg";
   }
   )
 }

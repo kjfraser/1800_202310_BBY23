@@ -61,8 +61,6 @@ function showEventsOnMap() {
               lng = hazard.data().lng;
               lat = hazard.data().lat;
               coordinates = [lng, lat];
-              // console.log(lng, lat);
-              // console.log(coordinates);
               //read name and the details of hazard
               event_name = hazard.data().title; // Event Name
               preview = hazard.data().description; // Text Preview
@@ -139,15 +137,15 @@ function showEventsOnMap() {
     // Draw an arrow next to the location dot to indicate which direction the device is heading.
     showUserHeading: true,
   });
-  map.addControl(geolocate);
+
+  map.addControl(geolocate)
+
   geolocate.on("geolocate", () => {});
   geolocate.on("trackuserlocationstart", () => {
     is_tracking = true;
-    console.log("is trackin");
   });
   geolocate.off("trackuserlocationstart", () => {
     is_tracking = false;
-    console.log("isnt trackin");
   });
 
 
