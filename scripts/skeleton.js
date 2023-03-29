@@ -66,16 +66,16 @@ function fillHazardCard(hazardID, template, group) {
         });
 
       hazardCard.querySelector(".user").innerHTML =
-        "posted by: " + user.data().name;
+        "Posted by " + user.data().name;
       hazardCard.querySelector(".title").innerHTML = title;
-      hazardCard.querySelector(".timestamp").innerHTML = new Date(
+      hazardCard.querySelector(".timestamp").innerHTML = "Last Updated: " + new Date(
         timestamp
       ).toLocaleString();
 
       //Fill Ins
       hazardCard.querySelector(
         ".description"
-      ).innerHTML = `Description: ${description}`;
+      ).innerHTML = `${description}`;
       hazardCard.querySelector("#more").href =
         "hazard_view_page.html?hazard=" + hazardID;
       hazardCard.getElementById("card-image card-img-top").src = hazardimg;

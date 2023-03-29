@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Hazard Mapping</title>
+    <title>Report Hazard</title>
     <meta name="comp1800 template" content="My 1800 App">
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
 
@@ -25,58 +25,61 @@
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
     <!-------------------------------------------------------->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!--MapBox-->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-    <link rel="stylesheet" href="./styles/style.css"> 
+    <link rel="stylesheet" href="./styles/style.css">
 
 </head>
 
 <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-
     <!-- our own navbar goes here -->
     <nav id="navbarPrimary"></nav>
 
-    <main>
-        <!-- MAPBOX -->
-        <div id='map' style='width: 100%; height: 300px;'></div>
 
-        <div class="container">
-          <h1><span id="hazardTitle">hazard</span></h1>
-          <div class="position-relative">
-              <img id="hazardImage" src="" alt="Hazard photo">
-              <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="loadUpdateHazardPage()">Update</button>
-          </div>
-       </div>
+    <!-- place holder content, does not interact with database -->
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="" class="form-control" id="title" placeholder="Hazard" onchange="listenTitleChange()">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea class="form-control" id="description" rows="3"></textarea>
+    </div>
 
-        <!-- our own footer goes here-->
-        <nav id="footerPrimary"></nav>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Add Photos</label>
+        <input type="file" id="mypic-input" accept="image/*" />
+        <img id="mypic-goes-here" width=100 height=100 />
+    </div>
 
-        <!---------------------------------------------->
-        <!-- Your own JavaScript functions go here    -->
-        <!---------------------------------------------->
-        <script src="./scripts/firebaseAPI_TEAM23.js"></script>
-        <script src="./scripts/map.js"></script>
-        <script src="./scripts/hazard_view_page.js"></script>
-        <script src="./scripts/skeleton.js"></script>
+    <div class="d-flex justify-content-end">
+        <button id="create-report" type="button" class="btn btn-lg btn-primary pull-right" onclick="updateHazardReport()">Submit</button>
+    </div>
 
 
-        <!-- <script src="./scripts/script.js"></script> -->
+    <!-- our own footer goes here-->
+    <nav id="footerPrimary"></nav>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="./scripts/firebaseAPI_TEAM23.js"></script>
+    <script src="./scripts/reports.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 

@@ -37,15 +37,15 @@ function writeHazardReport() {
   }
   document.getElementById("create-report").disabled = true;
   let input_title = document.getElementById("title").value;
-  let Description = document.getElementById("description").value;
+  let input_description = document.getElementById("description").value;
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       db.collection("users").doc(user.uid).get()
-        .then((userDoc) => {
+        .then(() => {
           db.collection("hazards").add({
             userID: user.uid,
             title: input_title,
-            description: Description,
+            description: input_description,
             lng: userLng,
             lat: userLat,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -61,8 +61,6 @@ function writeHazardReport() {
                   window.location.href = 'thanks.html';
                 })
               });
-    
-            
             })
         })
     } else {
@@ -75,7 +73,10 @@ function writeHazardReport() {
 
 
 //DO NOT DELETE.
-function updateHazardReport(currentHazardID) {
+function updateHazardReport() {
+  var currentHazardID = localStorage.getItem('hazardDocID');
+  let input_title = document.getElementById("title").value;
+  let input_description = document.getElementById("description").value;
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       db.collection("hazards").doc(currentHazardID).get().then((currentHazard) => {
@@ -84,24 +85,34 @@ function updateHazardReport(currentHazardID) {
           description: currentHazard.data().description,
           lng: currentHazard.data().lng,
           lat: currentHazard.data().lat,
-          datetime: currentHazard.data().datetime,
-          owner: currentHazard.data().owner,
+          timestamp: currentHazard.data().timestamp,
+          userID: currentHazard.data().userID,
+
         })
         db.collection("hazards").doc(currentHazardID).update({
-          title: "update",
-          description: "default2",
-          // lng: userLng,
-          // lat: userLat,
-          datetime: firebase.firestore.FieldValue.serverTimestamp(),
-          owner: user.uid,
-        })
-          .then(() => {
-            db.collection("users")
+          title: input_title,
+          description: input_description,
+          lng: currentHazard.data().lng,
+          lat: currentHazard.data().lat,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          userID: user.uid,
+        }).then(()=>{
+          db.collection("hazards").doc(currentHazardID).get()
+          .then(doc => {
+            uploadPic(doc.id, () => {
+              db.collection("users")
               .doc(user.uid)
               .update({
-                reports: firebase.firestore.FieldValue.arrayUnion(currentHazardID),
-              });
-          });
+                reports: firebase.firestore.FieldValue.arrayUnion(doc.id),
+              })
+              .then(() => {
+                window.location.href = 'thanks.html';
+              })
+            });
+          })
+        })
+
+   
       });
     }
   });
