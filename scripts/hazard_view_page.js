@@ -27,3 +27,10 @@ function saveHazardDocumentIDAndRedirect(){
   localStorage.setItem('hazardDocID', ID);
   window.location.href = 'comment.html';
 }
+
+function loadUpdateHazardPage(){
+  let params = new URL(window.location.href) //get the url from the search bar
+  let ID = params.searchParams.get("hazard");
+  localStorage.setItem('hazardDocID', ID);
+  window.location = "hazard-update.html?hazard=" + ID;
+}

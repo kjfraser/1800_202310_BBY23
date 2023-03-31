@@ -69,5 +69,13 @@ body {
 }
 
 #hazardImage {
-    max-height: 50vh;
+    max-height: 30vh;
+}
+
+#hazardCardGroup {
+    padding-bottom: 50px;
+}
+
+.form-label {
+  font-size: 15pt;
 }

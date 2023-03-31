@@ -94,3 +94,28 @@ function getBookmarks(user) {
     });
   })
 }
+
+
+
+function editUserInfo() {
+  //Enable the form fields
+  document.getElementById('personalInfoFields').disabled = false;
+}
+
+function saveUserInfo() {
+  userName = document.getElementById('nameInput').value;       
+  userEmail = document.getElementById('emailInput').value;     
+  
+
+  currentUser.update({
+      name: userName,
+      email: userEmail
+  })
+  .then(() => {
+      console.log("Document successfully updated!");
+  })
+
+  document.getElementById('personalInfoFields').disabled = true;
+
+ 
+}
