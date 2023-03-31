@@ -58,14 +58,22 @@ body {
 }
 
 
+.mapboxgl-popup-content {
+    max-width: 60vmin;
+    max-height: 60vmin;
+    display: flex;
+    flex-direction: column;
+}
 
 /* MapBox Designs */
 .mapboxgl-popup-content > img {
 
-    border-radius: 20px;
+    border-radius: 1vmin;
     align-self: center;
     justify-self: center;
-    max-width: 100%;
+    width: 50%;
+    height: 50%;
+    overflow: hidden;
 }
 
 #hazardImage {
@@ -73,7 +81,7 @@ body {
 }
 
 #hazardCardGroup {
-    padding-bottom: 50px;
+    padding-bottom: 80px;
 }
 
 .form-label {
