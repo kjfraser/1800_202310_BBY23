@@ -50,24 +50,33 @@
 
 
     <!-- place holder content, does not interact with database -->
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="" class="form-control" id="title" placeholder="Write the Main Hazard" onchange="listenTitleChange()">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-        <textarea class="form-control" id="description" placeholder="Describe the hazard" rows="3"></textarea>
-    </div>
+    <div class="container">
+        <h1 class="text-center mb-5">Report a Hazard</h1>
+      
+        <form>
+          <div class="mb-3">
+            <label for="title" class="form-label">Title  <span class="text-danger">(Required)</span></label>
+            <input type="text" class="form-control" id="title" placeholder="Write the Main Hazard" onchange="listenTitleChange()">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" placeholder="Describe the hazard" rows="3"></textarea>
+          </div>
+      
+          <div class="mb-3">
+            <label class="form-label d-block">Add Photos  <span class="text-danger">(Required)</span></label>
 
-    <div class="mb-3">
-        <label for="formFile" class="form-label"><p style="color:red">(Required)</p>Add Photos</label>
-        <input type="file" id="mypic-input" accept="image/*" />
-        <img id="mypic-goes-here" width=100 height=100 />
-    </div>
-
-    <div class="d-flex justify-content-end">
-        <button id="create-report" type="button" class="btn btn-lg btn-primary pull-right" onclick="writeHazardReport()">Submit</button>
-    </div>
+            <input type="file" id="mypic-input" accept="image/*" />
+            <img id="mypic-goes-here" width=100 height=100 />
+          </div>
+      
+          <div class="d-flex justify-content-end">
+            <label for="create-report" class="btn btn-lg btn-success">Submit</label>
+            <button id="create-report" type="button" class="visually-hidden" onclick="writeHazardReport()">Submit</button>
+          </div>
+        </form>
+      </div>
+      
 
 
     <!-- our own footer goes here-->
