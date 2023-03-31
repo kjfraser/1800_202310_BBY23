@@ -9,9 +9,12 @@ function displayHazardInformation(){
     hazardTitle = hazardData.title;
     hazaedDetails = hazardData.details;
     hazardImage = hazardData.image;
+    hazardTimestamp = hazardData.timestamp;
 
     document.getElementById("hazardTitle").innerHTML = hazardTitle;
+    document.getElementById("hazardDescription").innerHTML = hazaedDetails;
     document.getElementById("hazardImage").src = hazardImage;
+    document.getElementById("hazardTimestamp").innerHTML = "Last Updated: " + hazardTimestamp;
 
     altLat = hazardData.lat;
     altLng = hazardData.lng;
