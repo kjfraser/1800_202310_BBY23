@@ -1,9 +1,40 @@
-<footer id="main-footer"class="navbar bg-info fixed-bottom">
+<footer id="main-footer" class="navbar bg-info fixed-bottom">
     <div class="container">
+      <div class="icon-wrapper">
         <a class="material-icons" href="./main.html">home</a>
-        <a class="material-icons" href="./profile.html">profile</a>
+        <span class="icon-text">Home</span>
+      </div>
+      <div class="icon-wrapper">
+        <a class="material-icons" href="./profile.html">person</a>
+        <span class="icon-text">Profile</span>
+      </div>
+      <div class="icon-wrapper">
         <a class="material-icons" href="./hazard-report.html">warning</a>
-        
+        <span class="icon-text">Hazard Report</span>
+      </div>
     </div>
-</footer>
-
+  </footer>
+  
+  <style>
+  .material-icons {
+    display: block;
+    margin: 0 auto;
+    font-size: 36px;
+  }
+  
+  .icon-text {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    margin-top: 5px;
+  }
+  
+  .icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  </style>
+  
