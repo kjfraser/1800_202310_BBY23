@@ -1,10 +1,22 @@
+body {
+    background-color: #e6eedf !important;
+    font-family: Copperplate, sans-serif ;
+    font-size: 15pt;
+}
+
+.navbar-brand {
+    font-family: Impact, sans-serif !important;
+    
+}
+
 .navbar.navbar-expand-lg.navbar-light.bg-custom {
-    background-color: #132A13 !important;
+    background-color: #31572C !important;
 }
 
 .navbar.bg-info.fixed-bottom {
-    background-color: #132A13 !important;
+    background-color: #31572C !important;
 }
+
 
 .navbar-light .navbar-brand {
     color:  white;
@@ -57,37 +69,41 @@ body {
     cursor: pointer;
 }
 
-.mapboxgl-map {
-  
-}
 
-.mapboxgl-popup-content {
-    max-width: 60vmin;
-    max-height: 60vmin;
-    display: flex;
-    flex-direction: column;
-}
 
 /* MapBox Designs */
 .mapboxgl-popup-content > img {
 
-    border-radius: 1vmin;
+    border-radius: 20px;
     align-self: center;
     justify-self: center;
-    width: 50%;
-    height: 50%;
-    overflow: hidden;
+    max-width: 100%;
 }
-
 
 #hazardImage {
     max-height: 30vh;
 }
 
 #hazardCardGroup {
-    padding-bottom: 80px;
+    padding-bottom: 50px;
 }
 
 .form-label {
   font-size: 15pt;
 }
+
+#logout {
+    background-color: #ECF39E;
+    border-color: #90A955;
+    color: rgb(68, 65, 65); 
+  }
+
+  #logout:hover {
+    background-color:  #c2d305;
+    color: white; 
+  }
+
+
+  .nav-item:hover {
+    color: #2c612c; 
+  }
