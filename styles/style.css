@@ -57,6 +57,9 @@ body {
     cursor: pointer;
 }
 
+.mapboxgl-map {
+  
+}
 
 .mapboxgl-popup-content {
     max-width: 60vmin;
@@ -75,6 +78,7 @@ body {
     height: 50%;
     overflow: hidden;
 }
+
 
 #hazardImage {
     max-height: 30vh;
