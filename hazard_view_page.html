@@ -54,7 +54,7 @@
 
     <main>
         <!-- MAPBOX -->
-        <div id='map' style='width: 100%; height: 300px;'></div>
+        <div id='map' style='width: 100%; height: 100px;'></div>
 
         <div class="card mb-3">
             <img id="hazardImage" src="..." class="card-img-top" alt="...">
@@ -62,17 +62,19 @@
               <h5 id="hazardTitle" class="card-title">Card title</h5>
               <p id="hazardDescription"class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <p id="hazardTimestamp"class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="loadUpdateHazardPage()">Update</button>
+              <button id="delete-button" class="btn btn-primary position-absolute bottom-0 end-1 m-3" onclick="deleteHazard()">Delete</button>
             </div>
           </div>
 
 
-        <div class="container">
+        <!-- <div class="container">
           <h1><span id="hazardTitle">hazard</span></h1>
           <div class="position-relative">
               <img id="hazardImage" src="" alt="Hazard photo">
-              <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="loadUpdateHazardPage()">Update</button>
-          </div>
-       </div>
+             
+            </div>
+       </div> -->
 
         <!-- our own footer goes here-->
         <nav id="footerPrimary"></nav>
@@ -82,8 +84,10 @@
         <!---------------------------------------------->
         <script src="./scripts/firebaseAPI_TEAM23.js"></script>
         <script src="./scripts/map.js"></script>
-        <script src="./scripts/hazard_view_page.js"></script>
         <script src="./scripts/skeleton.js"></script>
+        <script src="./scripts/hazard_view_page.js"></script>
+       
+
 
 
         <!-- <script src="./scripts/script.js"></script> -->

@@ -1,3 +1,4 @@
+
 function displayHazardInformation(){
   //retrive document id from the url
   let params = new URL(window.location.href); //get url from search bar
@@ -37,3 +38,23 @@ function loadUpdateHazardPage(){
   localStorage.setItem('hazardDocID', ID);
   window.location = "hazard-update.html?hazard=" + ID;
 }
+
+function showDeleteButton(){
+  console.log("hello");
+  let params = new URL(window.location.href);
+  let ID = params.searchParams.get("hazard");
+  db.collection("hazards").doc(ID).get().then(thisHazard => {
+    hazardData = thisHazard.data();
+    console.log(hazardData.id);
+    if(currentUser){
+      if(currentUser.id == hazardData.userID){
+        document.getElementById("delete-button").style.display = 'block';
+        console.log("hyuck");
+      }else{
+        document.getElementById("delete-button").style.display = 'none';
+        console.log("giddyup");
+      }
+    }
+  });
+}
+showDeleteButton();
