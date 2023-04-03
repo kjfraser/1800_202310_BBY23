@@ -1,4 +1,18 @@
 //This file loads all scripts that will be required for most JS pages
+//Global variable pointing to the current user's Firestore document
+var currentUser;
+
+// This function is the only function that's called.
+function doAll() {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      currentUser = db.collection("users").doc(user.uid); //global
+    } else {
+      console.log("No user is signed in");
+    }
+  });
+}
+doAll();
 
 function loadSkeleton() {
   firebase.auth().onAuthStateChanged(function (user) {
@@ -68,14 +82,11 @@ function fillHazardCard(hazardID, template, group) {
       hazardCard.querySelector(".user").innerHTML =
         "Posted by " + user.data().name;
       hazardCard.querySelector(".title").innerHTML = title;
-      hazardCard.querySelector(".timestamp").innerHTML = "Last Updated: " + new Date(
-        timestamp
-      ).toLocaleString();
+      hazardCard.querySelector(".timestamp").innerHTML =
+        "Last Updated: " + new Date(timestamp).toLocaleString();
 
       //Fill Ins
-      hazardCard.querySelector(
-        ".description"
-      ).innerHTML = `${description}`;
+      hazardCard.querySelector(".description").innerHTML = `${description}`;
       hazardCard.querySelector("#more").href =
         "hazard_view_page.html?hazard=" + hazardID;
       hazardCard.getElementById("card-image card-img-top").src = hazardimg;
@@ -129,4 +140,34 @@ function setBookMarkFlag(hazardID, innerText) {
   Array.from(elements).forEach((element) => {
     element.querySelector("i").innerText = innerText;
   });
+}
+
+function deleteHazard() {
+  let params = new URL(window.location.href);
+  let ID = params.searchParams.get("hazard");
+  db.collection("hazards")
+    .doc(ID)
+    .get()
+    .then((thisHazard) => {
+      hazardData = thisHazard.data();
+      console.log(hazardData.imageURL);
+      if (currentUser) {
+        if (currentUser.id == hazardData.userID) {
+          deleteImage(hazardData.image, () => {
+            db.collection("hazards")
+              .doc(ID)
+              .delete()
+              .then(() => {
+                history.back();
+              });
+          });
+        }
+      }
+    });
+}
+
+function deleteImage(imageURL, callback) {
+  //Delete Image
+
+  callback(); //Calls the next function.
 }
