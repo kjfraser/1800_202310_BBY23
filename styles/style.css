@@ -11,7 +11,9 @@ body {
     
 }
 
-
+.card.mb-3 {
+ padding: 5%;
+}
 
 #login {
     background-color: #6f4e378b !important;

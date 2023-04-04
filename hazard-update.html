@@ -55,8 +55,11 @@
 
 
     <!-- place holder content, does not interact with database -->
+    <div class="container">
+        <h1 class="text-center mb-5">Report a Hazard</h1>
+
     <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <label for="exampleFormControlInput1" class="form-label">Title <span class="text-danger">(Required)</span></label>
         <input type="" class="form-control" id="title" placeholder="Hazard" onchange="listenTitleChange()">
     </div>
     <div class="mb-3">
@@ -65,15 +68,15 @@
     </div>
 
     <div class="mb-3">
-        <label for="formFile" class="form-label">Add Photos</label>
+        <label for="formFile" class="form-label">Add Photos <span class="text-danger">(Required)</span></label>
         <input type="file" id="mypic-input" accept="image/*" />
         <img id="mypic-goes-here" width=100 height=100 />
     </div>
 
     <div class="d-flex justify-content-end">
-        <button id="create-report" type="button" class="btn btn-lg btn-primary pull-right" onclick="updateHazardReport()">Submit</button>
+        <button id="create-report" type="button" class="btn btn-lg btn-success" onclick="updateHazardReport()">Submit</button>
     </div>
-
+</div>
 
     <!-- our own footer goes here-->
     <nav id="footerPrimary"></nav>
