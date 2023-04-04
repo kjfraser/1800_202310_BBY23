@@ -1,4 +1,4 @@
-import { getStorage, ref, deleteObject } from "firebase/storage";
+
 //This file loads all scripts that will be required for most JS pages
 //Global variable pointing to the current user's Firestore document
 var currentUser;
@@ -151,15 +151,15 @@ function deleteHazard() {
     .get()
     .then((thisHazard) => {
       hazardData = thisHazard.data();
-      console.log(hazardData.imageURL);
+      console.log(hazardData.id);
       if (currentUser) {
         if (currentUser.id == hazardData.userID) {
-          deleteImage(hazardData.image, () => {
+          deleteImage(ID, () => {
             db.collection("hazards")
               .doc(ID)
               .delete()
               .then(() => {
-                history.back();
+                 history.back();
               });
           });
         }
@@ -167,16 +167,12 @@ function deleteHazard() {
     });
 }
 
-function deleteImage(imageURL, callback) {
-  const storage = getStorage();
-  const storageRef = ref(storage);
-  const imagesRef = ref(storageRef, 'images');
-  const location = ref(imagesRef, imageURL);
-  const deleteRef = ref(storageDelete, location)
-  const path = deleteRef.fullPath;
-
-  deleteObject(path).then(() => {
-  });
-
-  callback(); //Calls the next function.
+function deleteImage(hazardID, callback) {
+  var storageRef = storage.ref("images/" + hazardID);
+  storageRef.delete().then(()=> {
+    callback();
+  }).catch(()=>{
+    console.log("Image not found at :" + storageRef);
+    callback();
+  })
 }
