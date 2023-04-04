@@ -1,13 +1,20 @@
 
 body {
-    background-color: rgba(57, 17, 17, 0.087) !important;
+    background-color: #6f4e3732 !important;
     font-family: K2D, sans-serif ;
     font-size: 15pt;
+    margin-bottom: 200px;
 }
 
 .navbar-brand {
     font-family: Impact, sans-serif !important;
     
+}
+
+
+
+#login {
+    background-color: #6f4e378b !important;
 }
 
 .navbar.navbar-expand-lg.navbar-light.bg-custom {
@@ -42,11 +49,6 @@ body {
     border-color: #823038;                    
     border-width: thick
 }
-
-body {
-    background-color: white;
-}
-
 
 
 .navbar-brand{
@@ -94,17 +96,59 @@ body {
 }
 
 #logout {
-    background-color: #ECF39E;
-    border-color: #90A955;
+    background-color: #edf3ad;
+    border-color: green;
     color: rgb(68, 65, 65); 
   }
 
   #logout:hover {
-    background-color:  #c2d305;
+    background-color:  green;
     color: white; 
   }
 
 
   .nav-item:hover {
     color: #2c612c; 
+  }
+
+  .btn.btn-info.btn-lg.px-4.gap-3.custom-btn {
+    background-color: #edf3ad;
+    border-color: green;
+    color: rgb(68, 65, 65); 
+  }
+
+  .btn.btn-info.btn-lg.px-4.gap-3.custom-btn:hover {
+    background-color:  green;
+    color: white; 
+  }
+
+  .btn.btn-primary.position-absolute.bottom-0.end-0.m-3{
+    background-color: #4e8a46;
+    border-color: #31572c;
+    color: #fff;
+  }
+
+  .btn.btn-primary.position-absolute.bottom-0.end-1.m-3 {
+    background-color: rgb(227, 7, 7);
+    border-color: #cf554f;
+    color: #fff;
+  }
+
+  .btn.btn-primary.position-absolute.bottom-0.end-0.m-3:hover{
+    background-color: #2a3928;
+    border-color: #32432f;
+    color: #fff;
+  }
+
+  .btn.btn-primary.position-absolute.bottom-0.end-1.m-3:hover{
+    background-color: rgb(136, 6, 6);
+    border-color: #750b06;
+    color: #fff;
+  }
+
+  #confirm {
+    display: block;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
