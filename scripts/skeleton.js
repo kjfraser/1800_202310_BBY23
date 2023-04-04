@@ -1,3 +1,4 @@
+import { getStorage, ref, deleteObject } from "firebase/storage";
 //This file loads all scripts that will be required for most JS pages
 //Global variable pointing to the current user's Firestore document
 var currentUser;
@@ -165,8 +166,6 @@ function deleteHazard() {
       }
     });
 }
-import * as test from "firebase/storage";
-
 
 function deleteImage(imageURL, callback) {
   const storage = getStorage();
