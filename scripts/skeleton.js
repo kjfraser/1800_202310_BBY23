@@ -165,9 +165,19 @@ function deleteHazard() {
       }
     });
 }
+import * as test from "firebase/storage";
+
 
 function deleteImage(imageURL, callback) {
-  //Delete Image
+  const storage = getStorage();
+  const storageRef = ref(storage);
+  const imagesRef = ref(storageRef, 'images');
+  const location = ref(imagesRef, imageURL);
+  const deleteRef = ref(storageDelete, location)
+  const path = deleteRef.fullPath;
+
+  deleteObject(path).then(() => {
+  });
 
   callback(); //Calls the next function.
 }
