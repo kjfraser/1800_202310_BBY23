@@ -28,13 +28,6 @@ function showEventsOnMap() {
       zoom: 12, // Starting zoom
     });
   }
-
-
-
-
-
-
-
   // Add user controls to map
   map.addControl(new mapboxgl.NavigationControl());
 
@@ -70,8 +63,8 @@ function showEventsOnMap() {
               features.push({
                 type: "Feature",
                 properties: {
-                  description: `<strong>${event_name}</strong><p>${preview}</p><img src="` + image + `" alt="No Image"> <br> <a href="/hazard-page.html?hazard=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`,
-                },
+                  description: `<strong>${event_name}</strong><p>${preview}</p><img src="` + image + `" alt="No Image"> <br> <a href="hazard_view_page.html?hazard=${hazard.id}" target="_blank" title="Opens in a new window">Read more</a>`,
+                },//hazard_view_page.html?hazard=" + hazardID
                 geometry: {
                   type: "Point",
                   coordinates: coordinates,

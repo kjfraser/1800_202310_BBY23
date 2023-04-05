@@ -8,14 +8,14 @@ function displayHazardInformation(){
     hazardData = thisHazard.data();
     // hazardCode = hazardData.code;
     hazardTitle = hazardData.title;
-    hazaedDetails = hazardData.details;
+    hazardDescription = hazardData.description;
     hazardImage = hazardData.image;
-    hazardTimestamp = hazardData.timestamp;
+    hazardTimestamp = hazardData.timestamp.toDate();
 
     document.getElementById("hazardTitle").innerHTML = hazardTitle;
-    document.getElementById("hazardDescription").innerHTML = hazaedDetails;
+    document.getElementById("hazardDescription").innerHTML = hazardDescription;
     document.getElementById("hazardImage").src = hazardImage;
-    document.getElementById("hazardTimestamp").innerHTML = "Last Updated: " + hazardTimestamp;
+    document.getElementById("hazardTimestamp").innerHTML = "Last Updated: " + new Date(hazardTimestamp).toLocaleString();
 
     altLat = hazardData.lat;
     altLng = hazardData.lng;

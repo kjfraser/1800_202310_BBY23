@@ -64,7 +64,13 @@ function fillHazardCard(hazardID, template, group) {
       let hazardCard = template.content.cloneNode(true);
       //update title and some pertinant information
       var title = hazardDoc.data().title;
-      var description = hazardDoc.data().description;
+      var description;
+      if(hazardDoc.data().description != undefined){
+        description = hazardDoc.data().description;
+      }else{
+        description = "No Description";
+      }
+       
       var timestamp = hazardDoc.data().timestamp.toDate();
       var hazardimg = hazardDoc.data().image;
       var user;

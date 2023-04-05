@@ -1,156 +1,209 @@
-
 body {
-    background-color: #6f4e3732 !important;
-    font-family: K2D, sans-serif ;
-    font-size: 15pt;
-    margin-bottom: 200px;
+  background-color: #6f4e3732 !important;
+  font-family: K2D, sans-serif;
+  font-size: 15pt;
+  margin-bottom: 200px;
 }
 
 .navbar-brand {
-    font-family: Impact, sans-serif !important;
-    
+  font-family: Impact, sans-serif !important;
+
 }
 
 .card.mb-3 {
- padding: 5%;
+  padding: 5%;
 }
 
 #login {
-    background-color: #6f4e378b !important;
+  background-color: #6f4e378b !important;
 }
 
 .navbar.navbar-expand-lg.navbar-light.bg-custom {
-    background-color: #31572C !important;
+  background-color: #31572C !important;
 }
 
 .navbar.bg-info.fixed-bottom {
-    background-color: #31572C !important;
+  background-color: #31572C !important;
 }
 
 
 .navbar-light .navbar-brand {
-    color:  white;
+  color: white;
 }
 
 .custom-btn {
-    background-color: #31572c;
-    border-color: #31572c;
-    color: #fff;
-  }
-  
-
-
-.custom-bg {
-    background-color: #31572c;
-  }
-
-.btn-primary {
-    color: #823038;                           
-    font-size: 150%;
-    background-color: #DEBA6F;                
-    border-color: #823038;                    
-    border-width: thick
+  background-color: #31572c;
+  border-color: #31572c;
+  color: #fff;
 }
 
 
-.navbar-brand{
-    font-family: 'Roboto', sans-serif;
-    font-size: 2.25rem;
+
+.custom-bg {
+  background-color: #31572c;
+}
+
+.btn-primary {
+  color: #823038;
+  font-size: 150%;
+  background-color: #DEBA6F;
+  border-color: #823038;
+  border-width: thick
+}
+
+
+.navbar-brand {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.25rem;
 }
 
 
 
 .navbar-light .navbar-nav .nav-link {
-    color: white;
+  color: white;
 }
 
 .material-icons {
-    color:white;
-    
+  color: white;
+
 }
 
-#icons > .material-icons {
-    color: black;
-    cursor: pointer;
+#icons>.material-icons {
+  color: black;
+  cursor: pointer;
 }
 
 
 
 /* MapBox Designs */
-.mapboxgl-popup-content > img {
+.mapboxgl-popup-content>img {
 
-    border-radius: 20px;
-    align-self: center;
-    justify-self: center;
-    max-width: 100%;
+  border-radius: 20px;
+  align-self: center;
+  justify-self: center;
+  max-width: 100%;
 }
 
 #hazardImage {
-    max-height: 30vh;
+  max-height: 30vh;
 }
 
 #hazardCardGroup {
-    padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 
 .form-label {
   font-size: 15pt;
 }
 
+
+
+#logout:hover {
+  background-color: green;
+  color: white;
+}
+
+
+.nav-item:hover {
+  color: #2c612c;
+}
+
+/* vvvvvvvvvvvvvvvv */
+/* vvvv Index  vvvv */
+/* vvvvvvvvvvvvvvvv */
+
+#index-html {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/forest.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: whitesmoke;
+
+}
+
+/* Login/Signup button */
+.btn.btn-info.btn-lg.px-4.gap-3.custom-btn {
+  background-color: #ffd000;
+  border-color: rgba(255, 153, 0, 0);
+  color: rgb(0, 0, 0);
+}
+
+/* Login/Signup button hover */
+.btn.btn-info.btn-lg.px-4.gap-3.custom-btn:hover {
+  background-color: #aa5500;
+  color: white;
+}
+
+/* Welcome text */
+.display-5.fw-bold {
+  color: white;
+}
+
+/*SubHeader */
+.col-lg-6.mx-auto {
+  color: rgba(255, 255, 255, 0.839);
+}
+
+/* ^^^^^^^^^^^^^^^^ */
+/* ^^^^  Index ^^^^ */
+/* ^^^^^^^^^^^^^^^^ */
+
+/* vvvvvvvvvvvvvvvv */
+/* vvvv Login  vvvv */
+/* vvvvvvvvvvvvvvvv */
+#login {
+
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/roads.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: whitesmoke;
+
+}
+
+/* ^^^^^^^^^^^^^^^^ */
+/* ^^^^  Login ^^^^ */
+/* ^^^^^^^^^^^^^^^^ */
+
+
+/* Primary Button */
+.btn.btn-primary {
+  background-color: #4e8a46;
+  border-color: #4e8a46;
+  /* border-color: #31572c; */
+  color: #fff;
+}
+
+/* Logout Button */
 #logout {
-    background-color: #edf3ad;
-    border-color: green;
-    color: rgb(68, 65, 65); 
-  }
+  background-color: #ffffff;
+  border-color: green;
+  color: rgb(68, 65, 65);
+}
 
-  #logout:hover {
-    background-color:  green;
-    color: white; 
-  }
+.btn.btn-primary.position-absolute.bottom-0.end-1.m-3 {
+  background-color: rgb(227, 7, 7);
+  border-color: #cf554f;
+  color: #fff;
+}
 
+.btn.btn-primary.position-absolute.bottom-0.end-0.m-3:hover {
+  background-color: #2a3928;
+  border-color: #32432f;
+  color: #fff;
+}
 
-  .nav-item:hover {
-    color: #2c612c; 
-  }
+.btn.btn-primary.position-absolute.bottom-0.end-1.m-3:hover {
+  background-color: rgb(136, 6, 6);
+  border-color: #750b06;
+  color: #fff;
+}
 
-  .btn.btn-info.btn-lg.px-4.gap-3.custom-btn {
-    background-color: #edf3ad;
-    border-color: green;
-    color: rgb(68, 65, 65); 
-  }
-
-  .btn.btn-info.btn-lg.px-4.gap-3.custom-btn:hover {
-    background-color:  green;
-    color: white; 
-  }
-
-  .btn.btn-primary.position-absolute.bottom-0.end-0.m-3{
-    background-color: #4e8a46;
-    border-color: #31572c;
-    color: #fff;
-  }
-
-  .btn.btn-primary.position-absolute.bottom-0.end-1.m-3 {
-    background-color: rgb(227, 7, 7);
-    border-color: #cf554f;
-    color: #fff;
-  }
-
-  .btn.btn-primary.position-absolute.bottom-0.end-0.m-3:hover{
-    background-color: #2a3928;
-    border-color: #32432f;
-    color: #fff;
-  }
-
-  .btn.btn-primary.position-absolute.bottom-0.end-1.m-3:hover{
-    background-color: rgb(136, 6, 6);
-    border-color: #750b06;
-    color: #fff;
-  }
-
-  #confirm {
-    display: block;
-    margin: 0 auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
+#confirm {
+  display: block;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
