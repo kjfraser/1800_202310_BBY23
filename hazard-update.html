@@ -19,7 +19,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+    </script>
 
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -34,7 +34,7 @@
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--MapBox-->
@@ -42,10 +42,10 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
 
-          <!--Font-->
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Anton&family=K2D&display=swap" rel="stylesheet">
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=K2D&display=swap" rel="stylesheet">
 
 </head>
 
@@ -58,25 +58,34 @@
     <div class="container">
         <h1 class="text-center mb-5">Update Hazard</h1>
 
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Title <span class="text-danger">(Required)</span></label>
-        <input type="" class="form-control" id="title" placeholder="Hazard" onchange="listenTitleChange()">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-        <textarea class="form-control" id="description" rows="3"></textarea>
-    </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title <span
+                    class="text-danger">(Required)</span></label>
+            <input type="" class="form-control" id="title" placeholder="Hazard" onchange="listenTitleChange()">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
 
-    <div class="mb-3">
-        <label for="formFile" class="form-label">Add Photos <span class="text-danger">(Required)</span></label>
-        <input type="file" id="mypic-input" accept="image/*" />
-        <img id="mypic-goes-here" width=100 height=100 />
-    </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Add Photos <span class="text-danger">(Required)</span></label>
+            <input type="file" id="mypic-input" accept="image/*" />
+            <img id="mypic-goes-here" width=100 height=100 />
+        </div>
 
-    <div class="d-flex justify-content-end">
-        <button id="create-report" type="button" class="btn btn-lg btn-success" onclick="updateHazardReport()">Submit</button>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="is-resolved">
+            <label class="form-check-label" for="is-resolved">
+                Hazard has been resolved
+            </label>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button id="create-report" type="button" class="btn btn-lg btn-success"
+                onclick="updateHazardReport()">Submit</button>
+        </div>
     </div>
-</div>
 
     <!-- our own footer goes here-->
     <nav id="footerPrimary"></nav>
@@ -87,6 +96,7 @@
     <script src="./scripts/firebaseAPI_TEAM23.js"></script>
     <script src="./scripts/reports.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/hazard-update.js"></script>
     <!-- <script src="./scripts/script.js"></script> -->
 
 </body>

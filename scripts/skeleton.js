@@ -74,6 +74,10 @@ function fillHazardCard(hazardID, template, group) {
        
       var timestamp = hazardDoc.data().timestamp.toDate();
       var hazardimg = hazardDoc.data().image;
+      var resolved = hazardDoc.data().resolved;
+      if(resolved == undefined){
+        resolved = false;
+      }
       var user;
       //get the user name
       await db
@@ -90,6 +94,9 @@ function fillHazardCard(hazardID, template, group) {
       hazardCard.querySelector(".user").innerHTML =
         "Last Updated by: " + user.data().name;
       hazardCard.querySelector(".title").innerHTML = title;
+      if(resolved){
+        hazardCard.querySelector(".title").innerHTML += "<p id='resolved-text'>[RESOLVED]<p>";
+      }
       hazardCard.querySelector(".timestamp").innerHTML =
         "Last Updated: " + new Date(timestamp).toLocaleString();
 

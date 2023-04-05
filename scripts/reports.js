@@ -19,13 +19,18 @@ function listenFileSelect() {
   const image = document.getElementById("mypic-goes-here"); // pointer #2
 
   // When a change happens to the File Chooser Input
-  fileInput.addEventListener("change", function (e) {
+  fileInput.addEventListener("change", function(e){
+    targetImageForUpload(e);
+  });
+
+  function targetImageForUpload(e){
+    console.log(e);
     ImageFile = e.target.files[0]; //Global variable
     var blob = URL.createObjectURL(ImageFile);
     image.src = blob; // Display this image
-
     document.getElementById("create-report").disabled = !canSubmit();
-  });
+  }
+
 }
 listenFileSelect();
 
@@ -51,6 +56,7 @@ function writeHazardReport() {
               lng: userLng,
               lat: userLat,
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              resolved: false
             })
             .then((doc) => {
               uploadPic(doc.id, () => {
@@ -77,6 +83,7 @@ function updateHazardReport() {
   var currentHazardID = localStorage.getItem("hazardDocID");
   let input_title = document.getElementById("title").value;
   let input_description = document.getElementById("description").value;
+  let resolved = document.getElementById("is-resolved").checked;
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       db.collection("hazards")
@@ -93,6 +100,7 @@ function updateHazardReport() {
               lat: currentHazard.data().lat,
               timestamp: currentHazard.data().timestamp,
               userID: currentHazard.data().userID,
+             
             });
           db.collection("hazards")
             .doc(currentHazardID)
@@ -103,6 +111,7 @@ function updateHazardReport() {
               lat: currentHazard.data().lat,
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
               userID: user.uid,
+              resolved: resolved,
             })
             .then(() => {
               db.collection("hazards")
