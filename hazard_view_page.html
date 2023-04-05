@@ -42,6 +42,11 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
     <link rel="stylesheet" href="./styles/style.css"> 
 
+          <!--Font-->
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Anton&family=K2D&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -52,20 +57,27 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPrimary"></nav>
 
-    <main>
-        <!-- MAPBOX -->
-        <div id='map' style='width: 100%; height: 100px;'></div>
 
-        <div class="card mb-3">
-            <img id="hazardImage" src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 id="hazardTitle" class="card-title">Card title</h5>
-              <p id="hazardDescription"class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p id="hazardTimestamp"class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-              <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="loadUpdateHazardPage()">Update</button>
-              <button id="delete-button" class="btn btn-primary position-absolute bottom-0 end-1 m-3" onclick="deleteHazard()">Delete</button>
-            </div>
-          </div>
+      <!-- Mapbox -->
+      <div id='map' style='width: 100%; height: 300px;'></div>
+      
+    
+
+      <div class="card mb-3">
+        <img id="hazardImage" src="..." class="card-img-top" alt="..." style="width:400px; height:400px; ">
+        <div class="card-body">
+          <h5 id="hazardTitle" class="card-title">Card title</h5>
+          <p id="hazardDescription" class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+          </p>
+          <p id="hazardTimestamp" class="card-text">
+            <small class="text-body-secondary">Last updated 3 mins ago</small>
+          </p>
+          <button class="btn btn-primary position-absolute bottom-0 end-0 m-3" onclick="loadUpdateHazardPage()">Update</button>
+          <button id="delete-button" class="btn btn-primary position-absolute bottom-0 end-1 m-3" onclick="deleteHazard()">Delete</button>
+        </div>
+      </div>
+
 
 
         <!-- <div class="container">
