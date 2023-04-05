@@ -20,8 +20,7 @@ function displayHazardInformation(){
     altLat = hazardData.lat;
     altLng = hazardData.lng;
     centerOnLocation = true;
-  }
-  )
+  })
 }
 displayHazardInformation();
 

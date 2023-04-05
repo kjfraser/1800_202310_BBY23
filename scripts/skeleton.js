@@ -151,20 +151,37 @@ function deleteHazard() {
     .get()
     .then((thisHazard) => {
       hazardData = thisHazard.data();
-      console.log(hazardData.id);
       if (currentUser) {
         if (currentUser.id == hazardData.userID) {
-          deleteImage(ID, () => {
-            db.collection("hazards")
-              .doc(ID)
-              .delete()
-              .then(() => {
-                 history.back();
-              });
+          deleteHistory(ID,()=>{
+            deleteImage(ID, () => {
+              db.collection("hazards")
+                .doc(ID)
+                .delete()
+                .then(() => {
+                   history.back();
+                });
+            });
           });
+      
         }
       }
     });
+}
+
+function deleteHistory(ID, callback){
+  db.collection("hazards").doc(ID).collection("history").get()
+  .then((allHistory) => {
+    allHistory.forEach((hazard) => {
+      console.log(hazard.id);
+      db.collection("hazards").doc(ID).collection("history").doc(hazard.id).delete();
+  }).then(callback());
+  }).catch(callback()
+  );
+  
+   
+  
+  
 }
 
 function deleteImage(hazardID, callback) {
