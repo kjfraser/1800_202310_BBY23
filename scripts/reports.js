@@ -118,7 +118,7 @@ function updateHazardReport() {
                         ),
                       })
                       .then(() => {
-                        window.location.href = "thanks.html";
+                        window.location.href = "thanks2.html";
                       });
                   });
                 });

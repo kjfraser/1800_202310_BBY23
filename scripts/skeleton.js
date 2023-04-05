@@ -44,6 +44,7 @@ function authenticate() {
 }
 
 function logout() {
+  console.log("yuh");
   firebase
     .auth()
     .signOut()
@@ -87,7 +88,7 @@ function fillHazardCard(hazardID, template, group) {
         });
 
       hazardCard.querySelector(".user").innerHTML =
-        "Posted by " + user.data().name;
+        "Last Updated by: " + user.data().name;
       hazardCard.querySelector(".title").innerHTML = title;
       hazardCard.querySelector(".timestamp").innerHTML =
         "Last Updated: " + new Date(timestamp).toLocaleString();
